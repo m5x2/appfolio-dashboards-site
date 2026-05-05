@@ -18,7 +18,7 @@ header .meta { color: #475569; font-size: 12px; margin-top: 4px; }
 section { margin-bottom: 32px; }
 h2 { font-size: 12px; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: .07em; margin-bottom: 12px; }
 
-/* ── Global filter bar ── */
+/* ── Filter bar ── */
 .filter-bar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; background: #1e2330; border: 1px solid #2d3348; border-radius: 10px; padding: 12px 16px; margin-bottom: 24px; }
 .filter-label { font-size: 11px; color: #475569; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; margin-right: 4px; }
 .filter-summary { font-size: 11px; color: #475569; margin-left: auto; }
@@ -33,15 +33,29 @@ h2 { font-size: 12px; font-weight: 600; color: #64748b; text-transform: uppercas
 .dd-panel label:hover { background: #252d40; }
 .dd-panel input[type=checkbox] { accent-color: #6366f1; }
 
-/* ── KPI cards ── */
-.kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-.kpi { background: #1e2330; border: 1px solid #2d3348; border-radius: 10px; padding: 16px 20px; }
-.kpi .label { font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 6px; }
-.kpi .value { font-size: 28px; font-weight: 700; color: #f8fafc; line-height: 1; }
-.kpi .sub { font-size: 11px; color: #64748b; margin-top: 5px; }
+/* ── Two-col sections ── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px; }
+.two-col-hdr { font-size: 12px; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: .07em; margin-bottom: 12px; }
+
+/* ── KPI groups ── */
+.kpi-group { display: flex; flex-direction: column; gap: 10px; }
+.kpi { background: #1e2330; border: 1px solid #2d3348; border-radius: 10px; padding: 14px 18px; }
+.kpi .label { font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 5px; }
+.kpi .value { font-size: 26px; font-weight: 700; color: #f8fafc; line-height: 1; }
+.kpi .sub { font-size: 11px; color: #64748b; margin-top: 4px; }
+.kpi-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .danger .value { color: #f87171; }
-.warn .value { color: #fbbf24; }
-.ok .value { color: #34d399; }
+.warn .value   { color: #fbbf24; }
+.ok .value     { color: #34d399; }
+.muted .value  { color: #94a3b8; }
+
+/* ── MTM breakdown bar ── */
+.mtm-bar-wrap { background: #1e2330; border: 1px solid #2d3348; border-radius: 10px; padding: 16px 20px; }
+.mtm-bar-track { height: 10px; border-radius: 5px; overflow: hidden; display: flex; margin: 10px 0 8px; }
+.mtm-bar-seg { height: 100%; }
+.mtm-bar-legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 4px; }
+.mtm-bar-legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #94a3b8; }
+.mtm-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 
 /* ── Chart card ── */
 .chart-card { background: #1e2330; border: 1px solid #2d3348; border-radius: 10px; padding: 20px 24px; }
@@ -57,14 +71,10 @@ svg text { font-family: inherit; }
 .legend-swatch { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
 .legend-line { width: 20px; height: 2px; border-top: 2px dashed #94a3b8; flex-shrink: 0; }
 
-/* ── Property table ── */
-.prop-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-
 /* ── Tables ── */
 .tbl-wrap { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; font-size: 12px; }
-th { text-align: left; color: #64748b; font-weight: 500; padding: 8px 10px; border-bottom: 1px solid #2d3348; white-space: nowrap; cursor: pointer; user-select: none; }
-th:hover { color: #94a3b8; }
+th { text-align: left; color: #64748b; font-weight: 500; padding: 8px 10px; border-bottom: 1px solid #2d3348; white-space: nowrap; }
 td { padding: 7px 10px; border-bottom: 1px solid #1a2030; color: #cbd5e1; white-space: nowrap; }
 tr:last-child td { border-bottom: none; }
 tbody tr:hover td { background: #1a2335; }
@@ -72,18 +82,21 @@ tbody tr:hover td { background: #1a2335; }
 .pill-high   { background: #3b1111; color: #f87171; }
 .pill-medium { background: #2d2510; color: #fbbf24; }
 .pill-low    { background: #0f2d1e; color: #34d399; }
+.pill-mgmt   { background: #1a1f35; color: #818cf8; }
 
-/* ── Scrollable lease table ── */
+/* ── Lease table ── */
 .table-header-row { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
 #lease-table-wrap { max-height: 460px; overflow-y: auto; }
 #lease-table-wrap::-webkit-scrollbar { width: 5px; }
 #lease-table-wrap::-webkit-scrollbar-thumb { background: #2d3348; border-radius: 3px; }
 .count-badge { font-size: 11px; color: #475569; margin-left: auto; }
-
-/* ── Cohort filter (table-level) ── */
 .cohort-pills { display: flex; gap: 6px; flex-wrap: wrap; }
 .cohort-pill { border: 1px solid #2d3348; border-radius: 20px; padding: 3px 10px; font-size: 11px; color: #64748b; cursor: pointer; background: transparent; }
+.cohort-pill:hover { border-color: #475569; color: #94a3b8; }
 .cohort-pill.sel { background: #252d40; border-color: #6366f1; color: #a5b4fc; }
+
+/* ── Notice ── */
+.notice { font-size: 11px; color: #475569; font-style: italic; margin-top: 6px; }
 </style>
 </head>
 <body>
@@ -93,38 +106,66 @@ tbody tr:hover td { background: #1a2335; }
 
 <header>
   <h1>Retention Pipeline</h1>
-  <div class="meta">Likely vacancies · 90-day window + all MTM &nbsp;&middot;&nbsp; As of 2026-05-05</div>
+  <div class="meta">As of 2026-05-05 &nbsp;&middot;&nbsp; Expiring leases: 90-day window &nbsp;&middot;&nbsp; MTM: ongoing exposure</div>
 </header>
 
-<!-- Global filter bar -->
+<!-- Global filters -->
 <div class="filter-bar">
   <span class="filter-label">Filter</span>
   <div class="dd-wrap">
     <button class="dd-btn" id="gf-prop-btn">All properties &#9660;</button>
     <div class="dd-panel" id="gf-prop-panel"></div>
   </div>
-  <div class="dd-wrap">
-    <button class="dd-btn" id="gf-risk-btn">All risk tiers &#9660;</button>
-    <div class="dd-panel" id="gf-risk-panel"></div>
-  </div>
   <span class="filter-summary" id="filter-summary"></span>
 </div>
 
-<!-- KPIs -->
-<section>
-  <div class="kpi-row" id="kpi-row"></div>
-</section>
+<!-- Two-column: expiring leases + MTM -->
+<div class="two-col">
 
-<!-- Main chart -->
+  <!-- Left: Expiring leases -->
+  <div>
+    <div class="two-col-hdr">Expiring Leases &mdash; Next 90 Days</div>
+    <div class="kpi-group">
+      <div class="kpi-row">
+        <div class="kpi" id="kpi-exp-count"></div>
+        <div class="kpi warn" id="kpi-exp-expected"></div>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi danger" id="kpi-exp-high"></div>
+        <div class="kpi ok" id="kpi-exp-low"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right: MTM -->
+  <div>
+    <div class="two-col-hdr">Month-to-Month &mdash; Ongoing Exposure</div>
+    <div class="kpi-group">
+      <div class="kpi-row">
+        <div class="kpi muted" id="kpi-mtm-total"></div>
+        <div class="kpi" id="kpi-mtm-dnr" style="border-color:#312e81;"></div>
+      </div>
+      <div class="mtm-bar-wrap" id="mtm-bar-wrap">
+        <div style="font-size:11px;color:#64748b">MTM breakdown by status category</div>
+        <div class="mtm-bar-track" id="mtm-bar-track"></div>
+        <div class="mtm-bar-legend" id="mtm-bar-legend"></div>
+        <div class="notice">MTM tenants are not included in the vacancy forecast below. Do Not Retain cases are management-controlled removals on a separate timeline.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Vacancy forecast chart (expiring leases only) -->
 <section>
-  <h2>Likely Vacancies by Month Cohort</h2>
+  <h2>Likely Vacancies by Month &mdash; Expiring Leases Only</h2>
   <div class="chart-card">
     <svg id="vac-chart"></svg>
     <div class="legend" id="vac-legend"></div>
   </div>
 </section>
 
-<!-- Property exposure table -->
+<!-- Property table -->
 <section>
   <h2>Property Exposure</h2>
   <div class="chart-card">
@@ -132,10 +173,11 @@ tbody tr:hover td { background: #1a2335; }
       <table id="prop-table">
         <thead><tr>
           <th>Property</th>
-          <th title="Total leases in pipeline">Exposure</th>
-          <th title="Probability-weighted expected move-outs">Expected Vac.</th>
-          <th>High Risk</th><th>Medium</th><th>Low Risk</th>
-          <th>At-Risk Rent</th>
+          <th>Expiring (90d)</th>
+          <th title="Probability-weighted expected move-outs from expiring leases">Exp. Vac.</th>
+          <th>High</th><th>Med</th><th>Low</th>
+          <th>MTM</th>
+          <th title="Do Not Retain MTM — management-controlled removal">MTM DNR</th>
         </tr></thead>
         <tbody></tbody>
       </table>
@@ -173,14 +215,26 @@ const COLORS = { High: "#f87171", Medium: "#fbbf24", Low: "#34d399" };
 const TIER_ORDER = ["High", "Medium", "Low"];
 const PROB = { High: 0.95, Medium: 0.25, Low: 0.05 };
 
-function expectedVac(h, m, l) {
-  return PROB.High * h + PROB.Medium * m + PROB.Low * l;
+// MTM category definitions
+const DNR_STATUSES = new Set(["Do Not Retain", "M2M - Do Not Retain"]);
+const AT_RISK_STATUSES = new Set(["Avoidant", "Will Not Renew"]);
+const LOCKED_STATUSES = new Set(["Will Renew", "Will Renew w/ Concession", "Lease Signed", "Transfering"]);
+
+const MTM_CATEGORIES = [
+  { key: "dnr",     label: "Do Not Retain (Mgmt-controlled)", color: "#818cf8", test: l => DNR_STATUSES.has(l.retention_status) },
+  { key: "atrisk",  label: "At Risk of Vacancy",              color: "#f87171", test: l => AT_RISK_STATUSES.has(l.retention_status) },
+  { key: "outreach",label: "In Outreach / No Status",         color: "#fbbf24", test: l => !DNR_STATUSES.has(l.retention_status) && !AT_RISK_STATUSES.has(l.retention_status) && !LOCKED_STATUSES.has(l.retention_status) },
+  { key: "locked",  label: "Locked In",                       color: "#34d399", test: l => LOCKED_STATUSES.has(l.retention_status) },
+];
+
+function expectedVac(h, m, lo) {
+  return PROB.High * h + PROB.Medium * m + PROB.Low * lo;
 }
 
-// ── Cohort helpers ────────────────────────────────────────────────────────────
+// ── Cohort helpers ─────────────────────────────────────────────────────────────
 function leaseCohort(lease) {
   if (lease.is_mtm || !lease.lease_to) return "MTM";
-  return lease.lease_to.slice(0, 7); // "YYYY-MM"
+  return lease.lease_to.slice(0, 7);
 }
 
 function formatCohort(ym) {
@@ -199,37 +253,27 @@ function sortedCohorts(leases) {
   });
 }
 
-// ── Global filter state ───────────────────────────────────────────────────────
+// ── Filter state ──────────────────────────────────────────────────────────────
 let selProps = new Set();
-let selRisks = new Set();
-let selCohorts = new Set(); // table-level cohort filter
+let selCohorts = new Set();
 
 function filteredLeases() {
-  return RAW.leases.filter(lease => {
-    if (selProps.size && !selProps.has(lease.property)) return false;
-    if (selRisks.size && !selRisks.has(lease.risk_tier)) return false;
-    return true;
-  });
+  return RAW.leases.filter(l => !selProps.size || selProps.has(l.property));
+}
+function expiringLeases(leases) { return leases.filter(l => !l.is_mtm); }
+function mtmLeases(leases)      { return leases.filter(l =>  l.is_mtm); }
+function tableLeases(leases)    {
+  return leases.filter(l => !selCohorts.size || selCohorts.has(leaseCohort(l)));
 }
 
-function filteredForTable() {
-  return filteredLeases().filter(lease => {
-    if (selCohorts.size && !selCohorts.has(leaseCohort(lease))) return false;
-    return true;
-  });
-}
-
-// ── Dropdown builder ──────────────────────────────────────────────────────────
+// ── Dropdown ──────────────────────────────────────────────────────────────────
 function buildDD(btnId, panelId, items, selectedSet, defaultLabel, onChange) {
   const btn = document.getElementById(btnId);
   const panel = document.getElementById(panelId);
-  const checkboxes = [];
-
   items.forEach(item => {
     const lbl = document.createElement("label");
     const cb = document.createElement("input");
     cb.type = "checkbox"; cb.value = item;
-    checkboxes.push(cb);
     cb.addEventListener("change", () => {
       if (cb.checked) selectedSet.add(item); else selectedSet.delete(item);
       const n = selectedSet.size;
@@ -243,67 +287,95 @@ function buildDD(btnId, panelId, items, selectedSet, defaultLabel, onChange) {
     lbl.appendChild(document.createTextNode(" " + item));
     panel.appendChild(lbl);
   });
-
   btn.addEventListener("click", e => { e.stopPropagation(); panel.classList.toggle("open"); });
   document.addEventListener("click", () => panel.classList.remove("open"));
-  return checkboxes;
 }
 
 // ── Render all ────────────────────────────────────────────────────────────────
 function renderAll() {
-  const leases = filteredLeases();
-  updateFilterSummary(leases);
-  renderKPIs(leases);
-  renderChart(leases);
-  renderPropTable(leases);
-  renderCohortPills(leases);
-  renderLeaseTable();
-}
-
-// ── Filter summary ────────────────────────────────────────────────────────────
-function updateFilterSummary(leases) {
+  const all = filteredLeases();
+  const exp = expiringLeases(all);
+  const mtm = mtmLeases(all);
   document.getElementById("filter-summary").textContent =
-    leases.length + " lease" + (leases.length !== 1 ? "s" : "") + " in view";
+    all.length + " leases in view (" + exp.length + " expiring, " + mtm.length + " MTM)";
+  renderExpiringKPIs(exp);
+  renderMTMSection(mtm);
+  renderChart(exp);
+  renderPropTable(exp, mtm);
+  renderCohortPills(all);
+  renderLeaseTable(all);
 }
 
-// ── KPI cards ─────────────────────────────────────────────────────────────────
-function renderKPIs(leases) {
-  const high = leases.filter(l => l.risk_tier === "High");
-  const med  = leases.filter(l => l.risk_tier === "Medium");
-  const low  = leases.filter(l => l.risk_tier === "Low");
-  const expVac = Math.round(expectedVac(high.length, med.length, low.length));
-  const atRiskRent = high.reduce((s, l) => s + l.rent, 0);
-  const fmt = n => "$" + d3.format(",.0f")(n);
+// ── Expiring KPIs ─────────────────────────────────────────────────────────────
+function renderExpiringKPIs(exp) {
+  const high = exp.filter(l => l.risk_tier === "High");
+  const med  = exp.filter(l => l.risk_tier === "Medium");
+  const lo   = exp.filter(l => l.risk_tier === "Low");
+  const expV = Math.round(expectedVac(high.length, med.length, lo.length));
+  const fmt  = n => "$" + d3.format(",.0f")(n);
+  const highRent = high.reduce((s, l) => s + l.rent, 0);
 
-  const cards = [
-    { label: "Total Exposure",       value: leases.length,      sub: "leases in pipeline",       cls: "" },
-    { label: "Expected Vacancies",   value: "~" + expVac,       sub: "probability-weighted",      cls: expVac > 20 ? "danger" : "warn" },
-    { label: "High-Risk Units",      value: high.length,        sub: fmt(atRiskRent) + "/mo at risk", cls: "danger" },
-    { label: "NTVs \u2014 Last 30d", value: RAW.summary.ntv_last_30d, sub: "notices to vacate", cls: RAW.summary.ntv_last_30d > 5 ? "warn" : "" },
-  ];
+  function setKPI(id, lbl, val, sub) {
+    const el = document.getElementById(id);
+    el.innerHTML = `<div class="label">${lbl}</div><div class="value">${val}</div><div class="sub">${sub}</div>`;
+  }
+  setKPI("kpi-exp-count",    "Expiring (90d)",        exp.length,   "leases in window");
+  setKPI("kpi-exp-expected", "Expected Vacancies",    "~" + expV,   "probability-weighted");
+  setKPI("kpi-exp-high",     "High Risk",             high.length,  fmt(highRent) + "/mo at risk");
+  setKPI("kpi-exp-low",      "Locked In",             lo.length,    "will renew / signed");
+}
 
-  const row = document.getElementById("kpi-row");
-  row.innerHTML = "";
-  cards.forEach(c => {
-    const el = document.createElement("div");
-    el.className = "kpi" + (c.cls ? " " + c.cls : "");
-    el.innerHTML = `<div class="label">${c.label}</div><div class="value">${c.value}</div><div class="sub">${c.sub}</div>`;
-    row.appendChild(el);
+// ── MTM section ───────────────────────────────────────────────────────────────
+function renderMTMSection(mtm) {
+  const dnrCount = mtm.filter(l => DNR_STATUSES.has(l.retention_status)).length;
+
+  function setKPI(id, lbl, val, sub, style) {
+    const el = document.getElementById(id);
+    el.innerHTML = `<div class="label">${lbl}</div><div class="value" style="${style||""}">${val}</div><div class="sub">${sub}</div>`;
+  }
+  setKPI("kpi-mtm-total", "Total MTM",          mtm.length, "ongoing exposure", "color:#94a3b8");
+  setKPI("kpi-mtm-dnr",   "Do Not Retain",      dnrCount,   "mgmt-controlled removal", "color:#818cf8");
+
+  // Breakdown bar
+  const track = document.getElementById("mtm-bar-track");
+  const legend = document.getElementById("mtm-bar-legend");
+  track.innerHTML = ""; legend.innerHTML = "";
+  if (!mtm.length) return;
+
+  MTM_CATEGORIES.forEach(cat => {
+    const n = mtm.filter(cat.test).length;
+    if (!n) return;
+    const pct = (n / mtm.length * 100).toFixed(1);
+    const seg = document.createElement("div");
+    seg.className = "mtm-bar-seg";
+    seg.style.width = pct + "%";
+    seg.style.background = cat.color;
+    seg.title = cat.label + ": " + n;
+    track.appendChild(seg);
+
+    const li = document.createElement("div");
+    li.className = "mtm-bar-legend-item";
+    li.innerHTML = `<div class="mtm-dot" style="background:${cat.color}"></div>${n} ${cat.label}`;
+    legend.appendChild(li);
   });
 }
 
-// ── Main chart ─────────────────────────────────────────────────────────────────
-let chartSvg = null;
+// ── Main chart (expiring leases only) ─────────────────────────────────────────
+function renderChart(exp) {
+  const cohorts = sortedCohorts(exp).filter(c => c !== "MTM");
+  const svgEl = document.getElementById("vac-chart");
+  svgEl.innerHTML = "";
 
-function renderChart(leases) {
-  const cohorts = sortedCohorts(leases);
-  if (!cohorts.length) return;
+  if (!cohorts.length) {
+    svgEl.parentElement.insertAdjacentHTML("afterbegin",
+      "<p style='color:#475569;font-size:12px;padding:12px 0'>No expiring leases in view.</p>");
+    return;
+  }
 
-  // Build per-cohort data
   const data = cohorts.map(c => {
-    const cl = leases.filter(l => leaseCohort(l) === c);
-    const h = cl.filter(l => l.risk_tier === "High").length;
-    const m = cl.filter(l => l.risk_tier === "Medium").length;
+    const cl = exp.filter(l => leaseCohort(l) === c);
+    const h  = cl.filter(l => l.risk_tier === "High").length;
+    const m  = cl.filter(l => l.risk_tier === "Medium").length;
     const lo = cl.filter(l => l.risk_tier === "Low").length;
     return { cohort: c, label: formatCohort(c), High: h, Medium: m, Low: lo,
              total: h + m + lo, expected: expectedVac(h, m, lo) };
@@ -314,87 +386,56 @@ function renderChart(leases) {
   const W = totalW - margin.left - margin.right;
   const H = totalH - margin.top - margin.bottom;
 
-  // Clear and rebuild
-  const svgEl = document.getElementById("vac-chart");
-  svgEl.innerHTML = "";
   const svg = d3.select(svgEl)
     .attr("viewBox", `0 0 ${totalW} ${totalH}`)
     .attr("preserveAspectRatio", "xMidYMid meet")
     .style("width", "100%").style("height", "auto");
-
   const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
 
   const maxY = Math.max(d3.max(data, d => d.total) || 1, 5);
   const x = d3.scaleBand().domain(data.map(d => d.cohort)).range([0, W]).padding(0.4);
   const y = d3.scaleLinear().domain([0, maxY]).nice().range([H, 0]);
 
-  // Grid
   g.append("g").attr("class", "grid")
     .call(d3.axisLeft(y).ticks(5).tickSize(-W).tickFormat(""));
-
-  // Axes
   g.append("g").attr("class", "axis").attr("transform", `translate(0,${H})`)
     .call(d3.axisBottom(x).tickSize(0).tickPadding(10).tickFormat(d => formatCohort(d)));
   g.append("g").attr("class", "axis")
     .call(d3.axisLeft(y).ticks(5).tickFormat(d3.format("d")));
 
-  // Stacked bars
   const stack = d3.stack().keys(TIER_ORDER)(data);
   stack.forEach(series => {
     const tier = series.key;
-    g.selectAll(null)
-      .data(series)
-      .join("rect")
-        .attr("x", d => x(d.data.cohort))
-        .attr("y", d => y(d[1]))
-        .attr("height", d => Math.max(0, y(d[0]) - y(d[1])))
-        .attr("width", x.bandwidth())
-        .attr("fill", COLORS[tier])
-        .attr("opacity", 0.82)
-        .attr("rx", 3);
+    g.selectAll(null).data(series).join("rect")
+      .attr("x", d => x(d.data.cohort))
+      .attr("y", d => y(d[1]))
+      .attr("height", d => Math.max(0, y(d[0]) - y(d[1])))
+      .attr("width", x.bandwidth())
+      .attr("fill", COLORS[tier]).attr("opacity", 0.82).attr("rx", 3);
   });
 
-  // Total labels above each bar
+  // Total labels
   data.forEach(d => {
-    if (d.total === 0) return;
-    g.append("text")
-      .attr("x", x(d.cohort) + x.bandwidth() / 2)
-      .attr("y", y(d.total) - 6)
-      .attr("text-anchor", "middle")
-      .attr("fill", "#94a3b8").attr("font-size", 11)
-      .text(d.total);
+    if (!d.total) return;
+    g.append("text").attr("x", x(d.cohort) + x.bandwidth() / 2).attr("y", y(d.total) - 6)
+      .attr("text-anchor", "middle").attr("fill", "#94a3b8").attr("font-size", 11).text(d.total);
   });
 
   // Expected vacancy line
   const lineGen = d3.line()
-    .x(d => x(d.cohort) + x.bandwidth() / 2)
-    .y(d => y(d.expected))
-    .curve(d3.curveMonotoneX);
+    .x(d => x(d.cohort) + x.bandwidth() / 2).y(d => y(d.expected)).curve(d3.curveMonotoneX);
+  g.append("path").datum(data).attr("fill", "none").attr("stroke", "#e2e8f0")
+    .attr("stroke-width", 1.5).attr("stroke-dasharray", "5,3").attr("opacity", 0.7).attr("d", lineGen);
 
-  g.append("path")
-    .datum(data)
-    .attr("fill", "none")
-    .attr("stroke", "#e2e8f0")
-    .attr("stroke-width", 1.5)
-    .attr("stroke-dasharray", "5,3")
-    .attr("opacity", 0.7)
-    .attr("d", lineGen);
-
-  // Expected value dots + labels
   data.forEach(d => {
-    if (d.total === 0) return;
+    if (!d.total) return;
     const cx = x(d.cohort) + x.bandwidth() / 2;
     const cy = y(d.expected);
-    g.append("circle").attr("cx", cx).attr("cy", cy).attr("r", 3)
-      .attr("fill", "#e2e8f0").attr("opacity", 0.8);
-    g.append("text")
-      .attr("x", cx).attr("y", cy - 8)
-      .attr("text-anchor", "middle")
-      .attr("fill", "#e2e8f0").attr("font-size", 10).attr("opacity", 0.7)
-      .text("~" + Math.round(d.expected));
+    g.append("circle").attr("cx", cx).attr("cy", cy).attr("r", 3).attr("fill", "#e2e8f0").attr("opacity", 0.8);
+    g.append("text").attr("x", cx).attr("y", cy - 8).attr("text-anchor", "middle")
+      .attr("fill", "#e2e8f0").attr("font-size", 10).attr("opacity", 0.7).text("~" + Math.round(d.expected));
   });
 
-  // Legend
   const legend = document.getElementById("vac-legend");
   legend.innerHTML = "";
   TIER_ORDER.forEach(t => {
@@ -409,52 +450,50 @@ function renderChart(leases) {
   legend.appendChild(expItem);
 }
 
-// ── Property table ────────────────────────────────────────────────────────────
-function renderPropTable(leases) {
-  const byProp = {};
-  leases.forEach(lease => {
-    const p = lease.property;
-    if (!byProp[p]) byProp[p] = { property: p, total: 0, High: 0, Medium: 0, Low: 0, rent: 0 };
-    byProp[p].total++;
-    byProp[p][lease.risk_tier]++;
-    byProp[p].rent += lease.rent;
-  });
-
-  const rows = Object.values(byProp)
-    .sort((a, b) => (b.High - a.High) || (b.Medium - a.Medium));
+// ── Property table ─────────────────────────────────────────────────────────────
+function renderPropTable(exp, mtm) {
+  const all = [...exp, ...mtm];
+  const props = [...new Set(all.map(l => l.property))].sort();
 
   const fmt = n => n > 0 ? "$" + d3.format(",.0f")(n) : "";
   const tbody = document.querySelector("#prop-table tbody");
   tbody.innerHTML = "";
-  rows.forEach(p => {
-    const exp = Math.round(expectedVac(p.High, p.Medium, p.Low));
+
+  props.forEach(p => {
+    const pExp = exp.filter(l => l.property === p);
+    const pMtm = mtm.filter(l => l.property === p);
+    const h = pExp.filter(l => l.risk_tier === "High").length;
+    const m = pExp.filter(l => l.risk_tier === "Medium").length;
+    const lo = pExp.filter(l => l.risk_tier === "Low").length;
+    const expV = Math.round(expectedVac(h, m, lo));
+    const dnr  = pMtm.filter(l => DNR_STATUSES.has(l.retention_status)).length;
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td>${p.property}</td>
-      <td>${p.total}</td>
-      <td style="color:#e2e8f0;font-weight:600">~${exp}</td>
-      <td><span style="color:#f87171">${p.High || ""}</span></td>
-      <td><span style="color:#fbbf24">${p.Medium || ""}</span></td>
-      <td><span style="color:#34d399">${p.Low || ""}</span></td>
-      <td style="color:#f87171">${fmt(p.rent)}</td>`;
+      <td>${p}</td>
+      <td>${pExp.length || ""}</td>
+      <td style="color:#e2e8f0;font-weight:600">${pExp.length ? "~" + expV : ""}</td>
+      <td><span style="color:#f87171">${h || ""}</span></td>
+      <td><span style="color:#fbbf24">${m || ""}</span></td>
+      <td><span style="color:#34d399">${lo || ""}</span></td>
+      <td style="color:#94a3b8">${pMtm.length || ""}</td>
+      <td style="color:#818cf8">${dnr || ""}</td>`;
     tbody.appendChild(tr);
   });
 }
 
-// ── Cohort pills (table-level filter) ────────────────────────────────────────
-function renderCohortPills(leases) {
-  const cohorts = sortedCohorts(leases);
+// ── Cohort pills ──────────────────────────────────────────────────────────────
+function renderCohortPills(all) {
+  const cohorts = sortedCohorts(all);
   const container = document.getElementById("cohort-pills");
   container.innerHTML = "";
 
-  // "All" pill
   const allPill = document.createElement("button");
   allPill.className = "cohort-pill" + (selCohorts.size === 0 ? " sel" : "");
   allPill.textContent = "All";
   allPill.addEventListener("click", () => {
     selCohorts.clear();
-    renderCohortPills(leases);
-    renderLeaseTable();
+    renderCohortPills(all);
+    renderLeaseTable(all);
   });
   container.appendChild(allPill);
 
@@ -464,22 +503,23 @@ function renderCohortPills(leases) {
     pill.textContent = formatCohort(c);
     pill.addEventListener("click", () => {
       if (selCohorts.has(c)) selCohorts.delete(c); else selCohorts.add(c);
-      renderCohortPills(leases);
-      renderLeaseTable();
+      renderCohortPills(all);
+      renderLeaseTable(all);
     });
     container.appendChild(pill);
   });
 }
 
 // ── Lease table ───────────────────────────────────────────────────────────────
-function renderLeaseTable() {
-  const leases = filteredForTable();
+function renderLeaseTable(all) {
+  const leases = tableLeases(all || filteredLeases());
   document.getElementById("lease-count").textContent = leases.length + " leases";
-
   const fmt = n => n > 0 ? "$" + d3.format(",.0f")(n) : "";
   const tbody = document.querySelector("#lease-table tbody");
   tbody.innerHTML = "";
+
   leases.forEach(l => {
+    const isMgmt = l.is_mtm && DNR_STATUSES.has(l.retention_status);
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td>${l.name}</td>
@@ -488,8 +528,10 @@ function renderLeaseTable() {
       <td>${fmt(l.rent)}</td>
       <td>${l.lease_to || "MTM"}</td>
       <td>${formatCohort(leaseCohort(l))}</td>
-      <td style="color:${COLORS[l.risk_tier]}">${l.retention_status}</td>
-      <td><span class="pill pill-${l.risk_tier.toLowerCase()}">${l.risk_tier}</span></td>`;
+      <td style="color:${isMgmt ? "#818cf8" : COLORS[l.risk_tier]}">${l.retention_status}</td>
+      <td>${isMgmt
+        ? '<span class="pill pill-mgmt">Mgmt Track</span>'
+        : `<span class="pill pill-${l.risk_tier.toLowerCase()}">${l.risk_tier}</span>`}</td>`;
     tbody.appendChild(tr);
   });
 }
@@ -497,7 +539,6 @@ function renderLeaseTable() {
 // ── Init ──────────────────────────────────────────────────────────────────────
 const allProps = [...new Set(RAW.leases.map(l => l.property))].sort();
 buildDD("gf-prop-btn", "gf-prop-panel", allProps, selProps, "All properties", renderAll);
-buildDD("gf-risk-btn", "gf-risk-panel", TIER_ORDER, selRisks, "All risk tiers", renderAll);
 
 renderAll();
 </script>
