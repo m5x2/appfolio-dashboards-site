@@ -9,75 +9,81 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #0f1117; color: #e2e8f0; font-size: 13px; }
 
-/* ── Layout ── */
 .page { max-width: 1200px; margin: 0 auto; padding: 36px 24px 60px; }
-header { margin-bottom: 28px; }
+header { margin-bottom: 20px; }
 header h1 { font-size: 18px; font-weight: 600; color: #f8fafc; }
 header .meta { color: #475569; font-size: 12px; margin-top: 4px; }
 .back { color: #475569; font-size: 12px; text-decoration: none; display: inline-block; margin-bottom: 16px; }
 .back:hover { color: #94a3b8; }
+section { margin-bottom: 32px; }
+h2 { font-size: 12px; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: .07em; margin-bottom: 12px; }
 
-section { margin-bottom: 36px; }
-h2 { font-size: 13px; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 14px; }
+/* ── Global filter bar ── */
+.filter-bar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; background: #1e2330; border: 1px solid #2d3348; border-radius: 10px; padding: 12px 16px; margin-bottom: 24px; }
+.filter-label { font-size: 11px; color: #475569; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; margin-right: 4px; }
+.filter-summary { font-size: 11px; color: #475569; margin-left: auto; }
 
-/* ── KPI cards ── */
-.kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-.kpi { background: #1e2330; border: 1px solid #2d3348; border-radius: 10px; padding: 16px 20px; }
-.kpi .label { font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 6px; }
-.kpi .value { font-size: 26px; font-weight: 700; color: #f8fafc; line-height: 1; }
-.kpi .sub { font-size: 11px; color: #64748b; margin-top: 4px; }
-.kpi.danger .value { color: #f87171; }
-.kpi.warn .value { color: #fbbf24; }
-.kpi.ok .value { color: #34d399; }
-
-/* ── Charts ── */
-.chart-card { background: #1e2330; border: 1px solid #2d3348; border-radius: 10px; padding: 20px 24px; }
-.chart-card + .chart-card { margin-top: 12px; }
-
-svg text { font-family: inherit; }
-.axis path, .axis line { stroke: #2d3348; }
-.axis text { fill: #64748b; font-size: 11px; }
-.grid line { stroke: #1e2a3a; stroke-dasharray: 3,3; }
-.grid path { stroke: none; }
-
-/* ── Legend ── */
-.legend { display: flex; gap: 16px; margin-top: 12px; flex-wrap: wrap; }
-.legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #94a3b8; }
-.legend-swatch { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
-
-/* ── Two-column layout ── */
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-
-/* ── Tables ── */
-.tbl-wrap { overflow-x: auto; }
-table { width: 100%; border-collapse: collapse; font-size: 12px; }
-th { text-align: left; color: #64748b; font-weight: 500; padding: 8px 10px; border-bottom: 1px solid #2d3348; white-space: nowrap; }
-td { padding: 7px 10px; border-bottom: 1px solid #1a2030; color: #cbd5e1; white-space: nowrap; }
-tr:last-child td { border-bottom: none; }
-tbody tr:hover td { background: #1a2335; }
-.pill { display: inline-block; padding: 2px 7px; border-radius: 10px; font-size: 10px; font-weight: 600; }
-.pill-high { background: #3b1111; color: #f87171; }
-.pill-medium { background: #2d2510; color: #fbbf24; }
-.pill-low { background: #0f2d1e; color: #34d399; }
-
-/* ── Filters ── */
-.filter-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
-.filter-row label { font-size: 11px; color: #64748b; margin-right: 2px; }
+/* ── Dropdown ── */
 .dd-wrap { position: relative; display: inline-block; }
-.dd-btn { background: #1e2330; border: 1px solid #2d3348; border-radius: 6px; color: #cbd5e1; font-size: 12px; padding: 5px 10px; cursor: pointer; white-space: nowrap; }
-.dd-btn:hover { border-color: #475569; }
-.dd-panel { display: none; position: absolute; top: calc(100% + 4px); left: 0; background: #1e2330; border: 1px solid #2d3348; border-radius: 8px; padding: 8px 0; min-width: 160px; z-index: 100; box-shadow: 0 8px 24px rgba(0,0,0,.5); }
+.dd-btn { background: #151b27; border: 1px solid #2d3348; border-radius: 6px; color: #cbd5e1; font-size: 12px; padding: 5px 10px; cursor: pointer; white-space: nowrap; }
+.dd-btn:hover, .dd-btn.active { border-color: #6366f1; color: #a5b4fc; }
+.dd-panel { display: none; position: absolute; top: calc(100% + 4px); left: 0; background: #1e2330; border: 1px solid #2d3348; border-radius: 8px; padding: 8px 0; min-width: 180px; z-index: 200; box-shadow: 0 8px 24px rgba(0,0,0,.6); }
 .dd-panel.open { display: block; }
 .dd-panel label { display: flex; align-items: center; gap: 8px; padding: 5px 14px; cursor: pointer; color: #cbd5e1; font-size: 12px; }
 .dd-panel label:hover { background: #252d40; }
 .dd-panel input[type=checkbox] { accent-color: #6366f1; }
 
+/* ── KPI cards ── */
+.kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.kpi { background: #1e2330; border: 1px solid #2d3348; border-radius: 10px; padding: 16px 20px; }
+.kpi .label { font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 6px; }
+.kpi .value { font-size: 28px; font-weight: 700; color: #f8fafc; line-height: 1; }
+.kpi .sub { font-size: 11px; color: #64748b; margin-top: 5px; }
+.danger .value { color: #f87171; }
+.warn .value { color: #fbbf24; }
+.ok .value { color: #34d399; }
+
+/* ── Chart card ── */
+.chart-card { background: #1e2330; border: 1px solid #2d3348; border-radius: 10px; padding: 20px 24px; }
+svg text { font-family: inherit; }
+.axis path, .axis line { stroke: #2d3348; }
+.axis text { fill: #64748b; font-size: 11px; }
+.grid line { stroke: #1a2535; stroke-dasharray: 3,3; }
+.grid path { stroke: none; }
+
+/* ── Legend ── */
+.legend { display: flex; gap: 18px; margin-top: 14px; flex-wrap: wrap; align-items: center; }
+.legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #94a3b8; }
+.legend-swatch { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+.legend-line { width: 20px; height: 2px; border-top: 2px dashed #94a3b8; flex-shrink: 0; }
+
+/* ── Property table ── */
+.prop-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+/* ── Tables ── */
+.tbl-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+th { text-align: left; color: #64748b; font-weight: 500; padding: 8px 10px; border-bottom: 1px solid #2d3348; white-space: nowrap; cursor: pointer; user-select: none; }
+th:hover { color: #94a3b8; }
+td { padding: 7px 10px; border-bottom: 1px solid #1a2030; color: #cbd5e1; white-space: nowrap; }
+tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: #1a2335; }
+.pill { display: inline-block; padding: 2px 7px; border-radius: 10px; font-size: 10px; font-weight: 600; }
+.pill-high   { background: #3b1111; color: #f87171; }
+.pill-medium { background: #2d2510; color: #fbbf24; }
+.pill-low    { background: #0f2d1e; color: #34d399; }
+
 /* ── Scrollable lease table ── */
-#lease-table-wrap { max-height: 420px; overflow-y: auto; }
-#lease-table-wrap::-webkit-scrollbar { width: 6px; }
-#lease-table-wrap::-webkit-scrollbar-track { background: transparent; }
+.table-header-row { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+#lease-table-wrap { max-height: 460px; overflow-y: auto; }
+#lease-table-wrap::-webkit-scrollbar { width: 5px; }
 #lease-table-wrap::-webkit-scrollbar-thumb { background: #2d3348; border-radius: 3px; }
-.count-label { font-size: 11px; color: #475569; margin-left: auto; }
+.count-badge { font-size: 11px; color: #475569; margin-left: auto; }
+
+/* ── Cohort filter (table-level) ── */
+.cohort-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+.cohort-pill { border: 1px solid #2d3348; border-radius: 20px; padding: 3px 10px; font-size: 11px; color: #64748b; cursor: pointer; background: transparent; }
+.cohort-pill.sel { background: #252d40; border-color: #6366f1; color: #a5b4fc; }
 </style>
 </head>
 <body>
@@ -87,72 +93,70 @@ tbody tr:hover td { background: #1a2335; }
 
 <header>
   <h1>Retention Pipeline</h1>
-  <div class="meta">90-day window + all MTM &nbsp;&middot;&nbsp; As of 2026-05-05</div>
+  <div class="meta">Likely vacancies · 90-day window + all MTM &nbsp;&middot;&nbsp; As of 2026-05-05</div>
 </header>
 
-<!-- KPI row -->
+<!-- Global filter bar -->
+<div class="filter-bar">
+  <span class="filter-label">Filter</span>
+  <div class="dd-wrap">
+    <button class="dd-btn" id="gf-prop-btn">All properties &#9660;</button>
+    <div class="dd-panel" id="gf-prop-panel"></div>
+  </div>
+  <div class="dd-wrap">
+    <button class="dd-btn" id="gf-risk-btn">All risk tiers &#9660;</button>
+    <div class="dd-panel" id="gf-risk-panel"></div>
+  </div>
+  <span class="filter-summary" id="filter-summary"></span>
+</div>
+
+<!-- KPIs -->
 <section>
   <div class="kpi-row" id="kpi-row"></div>
 </section>
 
-<!-- Stacked bar: exposure by expiry bucket + risk tier -->
+<!-- Main chart -->
 <section>
-  <h2>Exposure by Expiry Window</h2>
+  <h2>Likely Vacancies by Month Cohort</h2>
   <div class="chart-card">
-    <svg id="bar-chart"></svg>
-    <div class="legend" id="bar-legend"></div>
+    <svg id="vac-chart"></svg>
+    <div class="legend" id="vac-legend"></div>
   </div>
 </section>
 
-<!-- Two-col: pipeline breakdown + property table -->
-<section class="two-col">
-  <div>
-    <h2>Pipeline by Status</h2>
-    <div class="chart-card">
-      <svg id="status-chart"></svg>
-    </div>
-  </div>
-  <div>
-    <h2>Property Exposure</h2>
-    <div class="chart-card">
-      <div class="tbl-wrap">
-        <table id="prop-table">
-          <thead><tr><th>Property</th><th>Total</th><th>High</th><th>Med</th><th>Low</th></tr></thead>
-          <tbody></tbody>
-        </table>
-      </div>
+<!-- Property exposure table -->
+<section>
+  <h2>Property Exposure</h2>
+  <div class="chart-card">
+    <div class="tbl-wrap">
+      <table id="prop-table">
+        <thead><tr>
+          <th>Property</th>
+          <th title="Total leases in pipeline">Exposure</th>
+          <th title="Probability-weighted expected move-outs">Expected Vac.</th>
+          <th>High Risk</th><th>Medium</th><th>Low Risk</th>
+          <th>At-Risk Rent</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
     </div>
   </div>
 </section>
 
-<!-- Lease-level table -->
+<!-- Lease table -->
 <section>
   <h2>All Leases in Pipeline</h2>
   <div class="chart-card">
-    <div class="filter-row">
-      <label>Property:</label>
-      <div class="dd-wrap" id="dd-prop">
-        <button class="dd-btn" id="dd-prop-btn">All properties &#9660;</button>
-        <div class="dd-panel" id="dd-prop-panel"></div>
-      </div>
-      <label style="margin-left:8px">Risk:</label>
-      <div class="dd-wrap" id="dd-risk">
-        <button class="dd-btn" id="dd-risk-btn">All tiers &#9660;</button>
-        <div class="dd-panel" id="dd-risk-panel"></div>
-      </div>
-      <label style="margin-left:8px">Window:</label>
-      <div class="dd-wrap" id="dd-bucket">
-        <button class="dd-btn" id="dd-bucket-btn">All windows &#9660;</button>
-        <div class="dd-panel" id="dd-bucket-panel"></div>
-      </div>
-      <span class="count-label" id="lease-count"></span>
+    <div class="table-header-row">
+      <div class="cohort-pills" id="cohort-pills"></div>
+      <span class="count-badge" id="lease-count"></span>
     </div>
     <div id="lease-table-wrap">
       <table id="lease-table">
         <thead><tr>
           <th>Tenant</th><th>Property</th><th>Unit</th>
-          <th>Rent</th><th>Lease End</th><th>Window</th>
-          <th>Status</th><th>Risk</th>
+          <th>Rent</th><th>Lease End</th><th>Cohort</th>
+          <th>Ret. Status</th><th>Risk</th>
         </tr></thead>
         <tbody></tbody>
       </table>
@@ -161,254 +165,341 @@ tbody tr:hover td { background: #1a2335; }
 </section>
 
 </div>
-
 <script>
 const RAW = {"leases": [{"id": "804", "name": "", "property": "ps25", "unit": "A1", "rent": 1395.0, "lease_to": "2017-06-12", "is_mtm": true, "days_to_expiry": -3249, "expiry_bucket": "MTM", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "4640", "name": "", "property": "tc68", "unit": "D098", "rent": 1795.0, "lease_to": "2021-11-30", "is_mtm": true, "days_to_expiry": -1617, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4570", "name": "", "property": "tc68", "unit": "A21", "rent": 1775.0, "lease_to": "2022-01-31", "is_mtm": true, "days_to_expiry": -1555, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4602", "name": "", "property": "tc68", "unit": "B58", "rent": 1775.0, "lease_to": "2022-03-31", "is_mtm": true, "days_to_expiry": -1496, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "824", "name": "", "property": "ps25", "unit": "D25", "rent": 1162.0, "lease_to": "2022-04-08", "is_mtm": true, "days_to_expiry": -1488, "expiry_bucket": "MTM", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "2230", "name": "", "property": "rl21", "unit": "13", "rent": 850.0, "lease_to": "2023-02-01", "is_mtm": true, "days_to_expiry": -1189, "expiry_bucket": "MTM", "retention_status": "Do Not Retain", "attrition_type": "Non-Regrettable", "risk_tier": "High"}, {"id": "2118", "name": "", "property": "c313", "unit": "38", "rent": 1495.0, "lease_to": "2023-05-31", "is_mtm": true, "days_to_expiry": -1070, "expiry_bucket": "MTM", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "4643", "name": "", "property": "tc68", "unit": "D101", "rent": 1595.0, "lease_to": "2023-06-30", "is_mtm": true, "days_to_expiry": -1040, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "3464", "name": "", "property": "o155-Elm", "unit": "M", "rent": 1125.0, "lease_to": "2023-08-31", "is_mtm": true, "days_to_expiry": -978, "expiry_bucket": "MTM", "retention_status": "In-progress (in communication)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "904", "name": "", "property": "w226", "unit": "3", "rent": 945.0, "lease_to": "2023-08-31", "is_mtm": true, "days_to_expiry": -978, "expiry_bucket": "MTM", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3466", "name": "", "property": "o155-Elm", "unit": "O", "rent": 1075.0, "lease_to": "2023-09-30", "is_mtm": true, "days_to_expiry": -948, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4627", "name": "", "property": "tc68", "unit": "D084", "rent": 1595.0, "lease_to": "2023-09-30", "is_mtm": true, "days_to_expiry": -948, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4622", "name": "", "property": "tc68", "unit": "D079", "rent": 1595.0, "lease_to": "2023-11-30", "is_mtm": true, "days_to_expiry": -887, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4636", "name": "", "property": "tc68", "unit": "D094", "rent": 1595.0, "lease_to": "2024-03-31", "is_mtm": true, "days_to_expiry": -765, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4587", "name": "", "property": "tc68", "unit": "B41", "rent": 1595.0, "lease_to": "2024-04-13", "is_mtm": true, "days_to_expiry": -752, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4556", "name": "", "property": "tc68", "unit": "A05", "rent": 1595.0, "lease_to": "2024-04-30", "is_mtm": true, "days_to_expiry": -735, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4628", "name": "", "property": "tc68", "unit": "D086", "rent": 1595.0, "lease_to": "2024-04-30", "is_mtm": true, "days_to_expiry": -735, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "2232", "name": "", "property": "rl21", "unit": "15", "rent": 850.0, "lease_to": "2024-06-06", "is_mtm": true, "days_to_expiry": -698, "expiry_bucket": "MTM", "retention_status": "Will Renew", "attrition_type": "Regrettable", "risk_tier": "Low"}, {"id": "4638", "name": "", "property": "tc68", "unit": "D096", "rent": 1595.0, "lease_to": "2024-06-30", "is_mtm": true, "days_to_expiry": -674, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "426", "name": "", "property": "ms43", "unit": "438", "rent": 1172.0, "lease_to": "2024-07-30", "is_mtm": true, "days_to_expiry": -644, "expiry_bucket": "MTM", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "4595", "name": "", "property": "tc68", "unit": "B49", "rent": 1775.0, "lease_to": "2024-08-28", "is_mtm": true, "days_to_expiry": -615, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4599", "name": "", "property": "tc68", "unit": "B55", "rent": 1595.0, "lease_to": "2024-08-31", "is_mtm": true, "days_to_expiry": -612, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4614", "name": "", "property": "tc68", "unit": "C70", "rent": 1775.0, "lease_to": "2024-08-31", "is_mtm": true, "days_to_expiry": -612, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4642", "name": "", "property": "tc68", "unit": "D100", "rent": 1775.0, "lease_to": "2024-08-31", "is_mtm": true, "days_to_expiry": -612, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "1622", "name": "", "property": "rl16", "unit": "B24", "rent": 1423.0, "lease_to": "2024-09-30", "is_mtm": true, "days_to_expiry": -582, "expiry_bucket": "MTM", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3462", "name": "", "property": "o155-Elm", "unit": "J", "rent": 950.0, "lease_to": "2024-10-31", "is_mtm": true, "days_to_expiry": -551, "expiry_bucket": "MTM", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "4600", "name": "", "property": "tc68", "unit": "B56", "rent": 1775.0, "lease_to": "2024-10-31", "is_mtm": true, "days_to_expiry": -551, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "3387", "name": "", "property": "o155-Oak", "unit": "A1", "rent": 1225.0, "lease_to": "2024-11-30", "is_mtm": true, "days_to_expiry": -521, "expiry_bucket": "MTM", "retention_status": "In-progress (in communication)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "4560", "name": "", "property": "tc68", "unit": "A09", "rent": 1595.0, "lease_to": "2024-11-30", "is_mtm": true, "days_to_expiry": -521, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4582", "name": "", "property": "tc68", "unit": "B36", "rent": 1595.0, "lease_to": "2024-11-30", "is_mtm": true, "days_to_expiry": -521, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4650", "name": "", "property": "tc68", "unit": "D108", "rent": 1595.0, "lease_to": "2024-11-30", "is_mtm": true, "days_to_expiry": -521, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4552", "name": "", "property": "tc68", "unit": "A01", "rent": 1795.0, "lease_to": "2025-01-31", "is_mtm": true, "days_to_expiry": -459, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4625", "name": "", "property": "tc68", "unit": "D082", "rent": 1775.0, "lease_to": "2025-02-15", "is_mtm": true, "days_to_expiry": -444, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "2104", "name": "", "property": "c313", "unit": "24", "rent": 1495.0, "lease_to": "2025-03-31", "is_mtm": true, "days_to_expiry": -400, "expiry_bucket": "MTM", "retention_status": "Will Not Renew", "attrition_type": "Non-Regrettable", "risk_tier": "High"}, {"id": "3458", "name": "", "property": "o155-Elm", "unit": "F", "rent": 1075.0, "lease_to": "2025-03-31", "is_mtm": true, "days_to_expiry": -400, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4585", "name": "", "property": "tc68", "unit": "B39", "rent": 1595.0, "lease_to": "2025-03-31", "is_mtm": true, "days_to_expiry": -400, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4590", "name": "", "property": "tc68", "unit": "B44", "rent": 1775.0, "lease_to": "2025-04-21", "is_mtm": true, "days_to_expiry": -379, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4601", "name": "", "property": "tc68", "unit": "B57", "rent": 1775.0, "lease_to": "2025-04-28", "is_mtm": true, "days_to_expiry": -372, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4591", "name": "", "property": "tc68", "unit": "B45", "rent": 1775.0, "lease_to": "2025-05-02", "is_mtm": true, "days_to_expiry": -368, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4615", "name": "", "property": "tc68", "unit": "C72", "rent": 1595.0, "lease_to": "2025-05-31", "is_mtm": true, "days_to_expiry": -339, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "321", "name": "", "property": "a210", "unit": "6", "rent": 1035.0, "lease_to": "2025-06-30", "is_mtm": true, "days_to_expiry": -309, "expiry_bucket": "MTM", "retention_status": "Will Renew", "attrition_type": "Regrettable", "risk_tier": "Low"}, {"id": "429", "name": "", "property": "ms43", "unit": "s3", "rent": 1099.0, "lease_to": "2025-06-30", "is_mtm": true, "days_to_expiry": -309, "expiry_bucket": "MTM", "retention_status": "Will Not Renew", "attrition_type": "Non-Regrettable", "risk_tier": "High"}, {"id": "3409", "name": "", "property": "o155-Oak", "unit": "D3", "rent": 1225.0, "lease_to": "2025-06-30", "is_mtm": true, "days_to_expiry": -309, "expiry_bucket": "MTM", "retention_status": "Will Renew", "attrition_type": "Regrettable", "risk_tier": "Low"}, {"id": "4620", "name": "", "property": "tc68", "unit": "C77", "rent": 1595.0, "lease_to": "2025-06-30", "is_mtm": true, "days_to_expiry": -309, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4632", "name": "", "property": "tc68", "unit": "D090", "rent": 1595.0, "lease_to": "2025-06-30", "is_mtm": true, "days_to_expiry": -309, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "772", "name": "", "property": "k104- LeFevre", "unit": "101-4", "rent": 1334.0, "lease_to": "2025-07-31", "is_mtm": true, "days_to_expiry": -278, "expiry_bucket": "MTM", "retention_status": "In-progress (called)", "attrition_type": "", "risk_tier": "Medium"}, {"id": "431", "name": "", "property": "ms43", "unit": "s5", "rent": 1099.0, "lease_to": "2025-07-31", "is_mtm": true, "days_to_expiry": -278, "expiry_bucket": "MTM", "retention_status": "Do Not Retain", "attrition_type": "Non-Regrettable", "risk_tier": "High"}, {"id": "1924", "name": "", "property": "ps25", "unit": "D26", "rent": 1395.0, "lease_to": "2025-07-31", "is_mtm": true, "days_to_expiry": -278, "expiry_bucket": "MTM", "retention_status": "In-progress (in communication)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "1884", "name": "", "property": "s129", "unit": "16", "rent": 1035.0, "lease_to": "2025-07-31", "is_mtm": true, "days_to_expiry": -278, "expiry_bucket": "MTM", "retention_status": "Will Renew", "attrition_type": "Regrettable", "risk_tier": "Low"}, {"id": "1781", "name": "", "property": "ps25", "unit": "C18", "rent": 1635.0, "lease_to": "2025-08-29", "is_mtm": true, "days_to_expiry": -249, "expiry_bucket": "MTM", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "828", "name": "", "property": "ps25", "unit": "D29", "rent": 1162.0, "lease_to": "2025-08-31", "is_mtm": true, "days_to_expiry": -247, "expiry_bucket": "MTM", "retention_status": "In-progress (in communication)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "1105", "name": "", "property": "ps91", "unit": "12", "rent": 1360.0, "lease_to": "2025-08-31", "is_mtm": true, "days_to_expiry": -247, "expiry_bucket": "MTM", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "4569", "name": "", "property": "tc68", "unit": "A20", "rent": 1775.0, "lease_to": "2025-08-31", "is_mtm": true, "days_to_expiry": -247, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4610", "name": "", "property": "tc68", "unit": "C66", "rent": 1595.0, "lease_to": "2025-08-31", "is_mtm": true, "days_to_expiry": -247, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "1255", "name": "", "property": "ps25", "unit": "B16", "rent": 1395.0, "lease_to": "2025-09-30", "is_mtm": true, "days_to_expiry": -217, "expiry_bucket": "MTM", "retention_status": "Will Renew", "attrition_type": "Regrettable", "risk_tier": "Low"}, {"id": "4617", "name": "", "property": "tc68", "unit": "C74", "rent": 1775.0, "lease_to": "2025-09-30", "is_mtm": true, "days_to_expiry": -217, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4557", "name": "", "property": "tc68", "unit": "A06", "rent": 1595.0, "lease_to": "2025-10-21", "is_mtm": true, "days_to_expiry": -196, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4583", "name": "", "property": "tc68", "unit": "B37", "rent": 1775.0, "lease_to": "2025-10-30", "is_mtm": true, "days_to_expiry": -187, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "3453", "name": "", "property": "o155-Elm", "unit": "A", "rent": 1125.0, "lease_to": "2025-10-31", "is_mtm": true, "days_to_expiry": -186, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "3398", "name": "", "property": "o155-Oak", "unit": "B7", "rent": 1075.0, "lease_to": "2025-10-31", "is_mtm": true, "days_to_expiry": -186, "expiry_bucket": "MTM", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3405", "name": "", "property": "o155-Oak", "unit": "C7", "rent": 1075.0, "lease_to": "2025-10-31", "is_mtm": true, "days_to_expiry": -186, "expiry_bucket": "MTM", "retention_status": "Will Renew", "attrition_type": "Regrettable", "risk_tier": "Low"}, {"id": "3408", "name": "", "property": "o155-Oak", "unit": "D2", "rent": 1075.0, "lease_to": "2025-10-31", "is_mtm": true, "days_to_expiry": -186, "expiry_bucket": "MTM", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "4564", "name": "", "property": "tc68", "unit": "A14", "rent": 1595.0, "lease_to": "2025-10-31", "is_mtm": true, "days_to_expiry": -186, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4618", "name": "", "property": "tc68", "unit": "C75", "rent": 1775.0, "lease_to": "2025-10-31", "is_mtm": true, "days_to_expiry": -186, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4621", "name": "", "property": "tc68", "unit": "C78", "rent": 1595.0, "lease_to": "2025-10-31", "is_mtm": true, "days_to_expiry": -186, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "2123", "name": "", "property": "k104- LeFevre", "unit": "519-4", "rent": 1334.0, "lease_to": "2025-11-14", "is_mtm": true, "days_to_expiry": -172, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "3394", "name": "", "property": "o155-Oak", "unit": "B3", "rent": 1075.0, "lease_to": "2025-11-30", "is_mtm": true, "days_to_expiry": -156, "expiry_bucket": "MTM", "retention_status": "In-progress (called)", "attrition_type": "Non-Regrettable", "risk_tier": "Medium"}, {"id": "4574", "name": "", "property": "tc68", "unit": "A25", "rent": 1595.0, "lease_to": "2025-11-30", "is_mtm": true, "days_to_expiry": -156, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4571", "name": "", "property": "tc68", "unit": "A22", "rent": 1775.0, "lease_to": "2025-12-22", "is_mtm": true, "days_to_expiry": -134, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4561", "name": "", "property": "tc68", "unit": "A10", "rent": 1775.0, "lease_to": "2026-01-27", "is_mtm": true, "days_to_expiry": -98, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4576", "name": "", "property": "tc68", "unit": "A29", "rent": 1595.0, "lease_to": "2026-01-31", "is_mtm": true, "days_to_expiry": -94, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4596", "name": "", "property": "tc68", "unit": "B50", "rent": 1595.0, "lease_to": "2026-01-31", "is_mtm": true, "days_to_expiry": -94, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4603", "name": "", "property": "tc68", "unit": "B59", "rent": 1775.0, "lease_to": "2026-01-31", "is_mtm": true, "days_to_expiry": -94, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4594", "name": "", "property": "tc68", "unit": "B48", "rent": 1775.0, "lease_to": "2026-02-03", "is_mtm": true, "days_to_expiry": -91, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4635", "name": "", "property": "tc68", "unit": "D093", "rent": 1775.0, "lease_to": "2026-02-04", "is_mtm": true, "days_to_expiry": -90, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4629", "name": "", "property": "tc68", "unit": "D087", "rent": 1795.0, "lease_to": "2026-02-06", "is_mtm": true, "days_to_expiry": -88, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4648", "name": "", "property": "tc68", "unit": "D106", "rent": 1775.0, "lease_to": "2026-02-27", "is_mtm": true, "days_to_expiry": -67, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4579", "name": "", "property": "tc68", "unit": "B33", "rent": 1595.0, "lease_to": "2026-02-28", "is_mtm": true, "days_to_expiry": -66, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4611", "name": "", "property": "tc68", "unit": "C67", "rent": 1795.0, "lease_to": "2026-02-28", "is_mtm": true, "days_to_expiry": -66, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4639", "name": "", "property": "tc68", "unit": "D097", "rent": 1795.0, "lease_to": "2026-02-28", "is_mtm": true, "days_to_expiry": -66, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "2183", "name": "", "property": "k308", "unit": "312-A", "rent": 2095.0, "lease_to": "2026-03-31", "is_mtm": true, "days_to_expiry": -35, "expiry_bucket": "MTM", "retention_status": "M2M - Do Not Retain", "attrition_type": "Non-Regrettable", "risk_tier": "High"}, {"id": "3057", "name": "", "property": "rl16", "unit": "D07", "rent": 1627.0, "lease_to": "2026-03-31", "is_mtm": true, "days_to_expiry": -35, "expiry_bucket": "MTM", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "2235", "name": "", "property": "rl21", "unit": "18", "rent": 850.0, "lease_to": "2026-03-31", "is_mtm": true, "days_to_expiry": -35, "expiry_bucket": "MTM", "retention_status": "Do Not Retain", "attrition_type": "Non-Regrettable", "risk_tier": "High"}, {"id": "3026", "name": "", "property": "kn47-k3", "unit": "K101", "rent": 1430.0, "lease_to": "2026-04-01", "is_mtm": true, "days_to_expiry": -34, "expiry_bucket": "MTM", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "4580", "name": "", "property": "tc68", "unit": "B34", "rent": 1775.0, "lease_to": "2026-04-03", "is_mtm": true, "days_to_expiry": -32, "expiry_bucket": "MTM", "retention_status": "Will Renew", "attrition_type": "Regrettable", "risk_tier": "Low"}, {"id": "739", "name": "", "property": "k104- LeFevre", "unit": "519-104", "rent": 1112.0, "lease_to": "2026-04-30", "is_mtm": true, "days_to_expiry": -5, "expiry_bucket": "MTM", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "3146", "name": "", "property": "kn47 K1", "unit": "A103", "rent": 1362.0, "lease_to": "2026-04-30", "is_mtm": true, "days_to_expiry": -5, "expiry_bucket": "MTM", "retention_status": "Will Not Renew", "attrition_type": "Non-Regrettable", "risk_tier": "High"}, {"id": "2297", "name": "", "property": "a511", "unit": "102", "rent": 1128.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "Will Renew", "attrition_type": "Regrettable", "risk_tier": "Low"}, {"id": "975", "name": "", "property": "a916", "unit": "10", "rent": 1033.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "Will Renew", "attrition_type": "", "risk_tier": "Low"}, {"id": "496", "name": "", "property": "b101", "unit": "17", "rent": 870.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "959", "name": "", "property": "c302", "unit": "13", "rent": 1243.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "Will Not Renew", "attrition_type": "Non-Regrettable", "risk_tier": "High"}, {"id": "2091", "name": "", "property": "c313", "unit": "10", "rent": 1645.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "Will Renew", "attrition_type": "Regrettable", "risk_tier": "Low"}, {"id": "3771", "name": "", "property": "h604", "unit": "", "rent": 1695.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "785", "name": "", "property": "k104- LeFevre", "unit": "Storage 3", "rent": 0.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "2755", "name": "", "property": "kn47 K1", "unit": "B101", "rent": 1362.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "2758", "name": "", "property": "kn47 K1", "unit": "B104", "rent": 1362.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "2762", "name": "", "property": "kn47 K1", "unit": "B204", "rent": 1362.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "Will Not Renew", "attrition_type": "Non-Regrettable", "risk_tier": "High"}, {"id": "2796", "name": "", "property": "kn47 K1", "unit": "E108", "rent": 1136.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "Do Not Retain", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "2803", "name": "", "property": "kn47 K1", "unit": "F103", "rent": 1136.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "2816", "name": "", "property": "kn47 K1", "unit": "G103", "rent": 1362.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "Do Not Retain", "attrition_type": "Non-Regrettable", "risk_tier": "High"}, {"id": "2830", "name": "", "property": "kn47 K1", "unit": "H203", "rent": 936.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "Do Not Retain", "attrition_type": "Non-Regrettable", "risk_tier": "High"}, {"id": "2839", "name": "", "property": "kn47 K1", "unit": "J104", "rent": 1136.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "Do Not Retain", "attrition_type": "Non-Regrettable", "risk_tier": "High"}, {"id": "2841", "name": "", "property": "kn47 K1", "unit": "J106", "rent": 936.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "Do Not Retain", "attrition_type": "Non-Regrettable", "risk_tier": "High"}, {"id": "2843", "name": "", "property": "kn47 K1", "unit": "J108", "rent": 1136.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "2845", "name": "", "property": "kn47 K1", "unit": "J202", "rent": 936.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "Do Not Retain", "attrition_type": "Non-Regrettable", "risk_tier": "High"}, {"id": "2851", "name": "", "property": "kn47 K1", "unit": "J208", "rent": 936.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "2870", "name": "", "property": "kn47 K1", "unit": "L205", "rent": 936.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "Do Not Retain", "attrition_type": "Non-Regrettable", "risk_tier": "High"}, {"id": "2878", "name": "", "property": "kn47 K1", "unit": "M107", "rent": 936.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "Will Renew", "attrition_type": "Regrettable", "risk_tier": "Low"}, {"id": "2881", "name": "", "property": "kn47 K1", "unit": "M202", "rent": 1136.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "Do Not Retain", "attrition_type": "Non-Regrettable", "risk_tier": "High"}, {"id": "2884", "name": "", "property": "kn47 K1", "unit": "M206", "rent": 1136.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "2954", "name": "", "property": "kn47 K2", "unit": "A106", "rent": 1136.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "Do Not Retain", "attrition_type": "Non-Regrettable", "risk_tier": "High"}, {"id": "2962", "name": "", "property": "kn47 K2", "unit": "B101", "rent": 1136.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "In-progress (called)", "attrition_type": "Non-Regrettable", "risk_tier": "Medium"}, {"id": "2984", "name": "", "property": "kn47 K2", "unit": "C203", "rent": 936.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "Will Renew w/ Concession", "attrition_type": "Regrettable", "risk_tier": "Low"}, {"id": "2989", "name": "", "property": "kn47 K2", "unit": "C208", "rent": 1136.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "2990", "name": "", "property": "kn47 K2", "unit": "D102", "rent": 936.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "Will Renew", "attrition_type": "Regrettable", "risk_tier": "Low"}, {"id": "2993", "name": "", "property": "kn47 K2", "unit": "D107", "rent": 936.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "In-progress (called)", "attrition_type": "", "risk_tier": "Medium"}, {"id": "2994", "name": "", "property": "kn47 K2", "unit": "D108", "rent": 1136.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "In-progress (in communication)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3011", "name": "", "property": "kn47 K2", "unit": "E206", "rent": 1136.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "In-progress (in communication)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3257", "name": "", "property": "l912 (Community Association)", "unit": "101", "rent": 340.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "3258", "name": "", "property": "l912 (Community Association)", "unit": "102", "rent": 340.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "3259", "name": "", "property": "l912 (Community Association)", "unit": "103", "rent": 340.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "3260", "name": "", "property": "l912 (Community Association)", "unit": "104", "rent": 340.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "3261", "name": "", "property": "l912 (Community Association)", "unit": "201", "rent": 340.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "3267", "name": "", "property": "l912 (Community Association)", "unit": "202", "rent": 340.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "3266", "name": "", "property": "l912 (Community Association)", "unit": "203", "rent": 340.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "3265", "name": "", "property": "l912 (Community Association)", "unit": "204", "rent": 340.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "3244", "name": "", "property": "l912 (Community Association)", "unit": "301", "rent": 340.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "3264", "name": "", "property": "l912 (Community Association)", "unit": "302", "rent": 340.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "3263", "name": "", "property": "l912 (Community Association)", "unit": "303", "rent": 340.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "3262", "name": "", "property": "l912 (Community Association)", "unit": "304", "rent": 340.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "2001", "name": "", "property": "l912 (Multi-Family)", "unit": "104", "rent": 1695.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "Do Not Retain", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "229", "name": "", "property": "m608", "unit": "3", "rent": 1087.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "2147", "name": "", "property": "ms43", "unit": "444", "rent": 1172.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "In-progress (in communication)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3463", "name": "", "property": "o155-Elm", "unit": "K", "rent": 1275.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "3401", "name": "", "property": "o155-Oak", "unit": "C2", "rent": 1075.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3402", "name": "", "property": "o155-Oak", "unit": "C3", "rent": 1075.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "In-progress (in communication)", "attrition_type": "Non-Regrettable", "risk_tier": "Medium"}, {"id": "1235", "name": "", "property": "p705", "unit": "15", "rent": 1295.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "1765", "name": "", "property": "ps25", "unit": "C21", "rent": 1635.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "2220", "name": "", "property": "rl21", "unit": "1", "rent": 850.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "Do Not Retain", "attrition_type": "Non-Regrettable", "risk_tier": "High"}, {"id": "2224", "name": "", "property": "rl21", "unit": "6", "rent": 850.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "Do Not Retain", "attrition_type": "Non-Regrettable", "risk_tier": "High"}, {"id": "2228", "name": "", "property": "rl21", "unit": "11", "rent": 850.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "Do Not Retain", "attrition_type": "Non-Regrettable", "risk_tier": "High"}, {"id": "2238", "name": "", "property": "rl21", "unit": "21", "rent": 850.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "Do Not Retain", "attrition_type": "Non-Regrettable", "risk_tier": "High"}, {"id": "2390", "name": "", "property": "tc34", "unit": "A2", "rent": 1245.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "2404", "name": "", "property": "tc34", "unit": "B115", "rent": 1235.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "4584", "name": "", "property": "tc68", "unit": "B38", "rent": 1795.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "2359", "name": "", "property": "v202", "unit": "14", "rent": 1475.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "894", "name": "", "property": "w226", "unit": "10", "rent": 1095.0, "lease_to": "", "is_mtm": true, "days_to_expiry": null, "expiry_bucket": "MTM", "retention_status": "In-progress (in communication)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "4568", "name": "", "property": "tc68", "unit": "A19", "rent": 1775.0, "lease_to": "2026-05-22", "is_mtm": false, "days_to_expiry": 17, "expiry_bucket": "0-30d", "retention_status": "Do Not Retain", "attrition_type": "Non-Regrettable", "risk_tier": "High"}, {"id": "4645", "name": "", "property": "tc68", "unit": "D103", "rent": 1795.0, "lease_to": "2026-05-30", "is_mtm": false, "days_to_expiry": 25, "expiry_bucket": "0-30d", "retention_status": "Avoidant", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "1390", "name": "", "property": "b101", "unit": "12", "rent": 870.0, "lease_to": "2026-05-31", "is_mtm": false, "days_to_expiry": 26, "expiry_bucket": "0-30d", "retention_status": "Transfering", "attrition_type": "Regrettable", "risk_tier": "Low"}, {"id": "3181", "name": "", "property": "c313", "unit": "6", "rent": 1645.0, "lease_to": "2026-05-31", "is_mtm": false, "days_to_expiry": 26, "expiry_bucket": "0-30d", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "1973", "name": "", "property": "k104- LeFevre", "unit": "314-12", "rent": 1334.0, "lease_to": "2026-05-31", "is_mtm": false, "days_to_expiry": 26, "expiry_bucket": "0-30d", "retention_status": "Do Not Retain", "attrition_type": "Non-Regrettable", "risk_tier": "High"}, {"id": "3140", "name": "", "property": "kn47 K1", "unit": "D102", "rent": 1136.0, "lease_to": "2026-05-31", "is_mtm": false, "days_to_expiry": 26, "expiry_bucket": "0-30d", "retention_status": "Do Not Retain", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "2783", "name": "", "property": "kn47 K1", "unit": "D104", "rent": 936.0, "lease_to": "2026-05-31", "is_mtm": false, "days_to_expiry": 26, "expiry_bucket": "0-30d", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "2880", "name": "", "property": "kn47 K1", "unit": "M201", "rent": 936.0, "lease_to": "2026-05-31", "is_mtm": false, "days_to_expiry": 26, "expiry_bucket": "0-30d", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "1227", "name": "", "property": "m221", "unit": "31", "rent": 1360.0, "lease_to": "2026-05-31", "is_mtm": false, "days_to_expiry": 26, "expiry_bucket": "0-30d", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "3469", "name": "", "property": "o155-Elm", "unit": "S", "rent": 1075.0, "lease_to": "2026-05-31", "is_mtm": false, "days_to_expiry": 26, "expiry_bucket": "0-30d", "retention_status": "Avoidant", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "3397", "name": "", "property": "o155-Oak", "unit": "B6", "rent": 1075.0, "lease_to": "2026-05-31", "is_mtm": false, "days_to_expiry": 26, "expiry_bucket": "0-30d", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "3134", "name": "", "property": "ps17", "unit": "A8", "rent": 956.0, "lease_to": "2026-05-31", "is_mtm": false, "days_to_expiry": 26, "expiry_bucket": "0-30d", "retention_status": "Avoidant", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "3153", "name": "", "property": "ps17", "unit": "B3", "rent": 956.0, "lease_to": "2026-05-31", "is_mtm": false, "days_to_expiry": 26, "expiry_bucket": "0-30d", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "3186", "name": "", "property": "ps17", "unit": "B4", "rent": 956.0, "lease_to": "2026-05-31", "is_mtm": false, "days_to_expiry": 26, "expiry_bucket": "0-30d", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "809", "name": "", "property": "ps25", "unit": "B9", "rent": 1395.0, "lease_to": "2026-05-31", "is_mtm": false, "days_to_expiry": 26, "expiry_bucket": "0-30d", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "821", "name": "", "property": "ps25", "unit": "C22", "rent": 1635.0, "lease_to": "2026-05-31", "is_mtm": false, "days_to_expiry": 26, "expiry_bucket": "0-30d", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "2165", "name": "", "property": "ps25", "unit": "D27", "rent": 1395.0, "lease_to": "2026-05-31", "is_mtm": false, "days_to_expiry": 26, "expiry_bucket": "0-30d", "retention_status": "Avoidant", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "837", "name": "", "property": "ps25", "unit": "F38", "rent": 1162.0, "lease_to": "2026-05-31", "is_mtm": false, "days_to_expiry": 26, "expiry_bucket": "0-30d", "retention_status": "Avoidant", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "1118", "name": "", "property": "ps91", "unit": "3", "rent": 1129.0, "lease_to": "2026-05-31", "is_mtm": false, "days_to_expiry": 26, "expiry_bucket": "0-30d", "retention_status": "Will Renew", "attrition_type": "Regrettable", "risk_tier": "Low"}, {"id": "3135", "name": "", "property": "rl16", "unit": "A02", "rent": 1627.0, "lease_to": "2026-05-31", "is_mtm": false, "days_to_expiry": 26, "expiry_bucket": "0-30d", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "1591", "name": "", "property": "rl16", "unit": "A15", "rent": 1627.0, "lease_to": "2026-05-31", "is_mtm": false, "days_to_expiry": 26, "expiry_bucket": "0-30d", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "3162", "name": "", "property": "rl16", "unit": "B22", "rent": 1195.0, "lease_to": "2026-05-31", "is_mtm": false, "days_to_expiry": 26, "expiry_bucket": "0-30d", "retention_status": "Will Not Renew", "attrition_type": "Non-Regrettable", "risk_tier": "High"}, {"id": "1639", "name": "", "property": "rl16", "unit": "C17", "rent": 1627.0, "lease_to": "2026-05-31", "is_mtm": false, "days_to_expiry": 26, "expiry_bucket": "0-30d", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "3160", "name": "", "property": "rl16", "unit": "D14", "rent": 1443.0, "lease_to": "2026-05-31", "is_mtm": false, "days_to_expiry": 26, "expiry_bucket": "0-30d", "retention_status": "Transfering", "attrition_type": "Regrettable", "risk_tier": "Low"}, {"id": "2126", "name": "", "property": "s129", "unit": "10", "rent": 1035.0, "lease_to": "2026-05-31", "is_mtm": false, "days_to_expiry": 26, "expiry_bucket": "0-30d", "retention_status": "Do Not Retain", "attrition_type": "Non-Regrettable", "risk_tier": "High"}, {"id": "150", "name": "", "property": "s300", "unit": "12", "rent": 966.0, "lease_to": "2026-05-31", "is_mtm": false, "days_to_expiry": 26, "expiry_bucket": "0-30d", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "3152", "name": "", "property": "tc34", "unit": "A106", "rent": 1235.0, "lease_to": "2026-05-31", "is_mtm": false, "days_to_expiry": 26, "expiry_bucket": "0-30d", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "2349", "name": "", "property": "v202", "unit": "2", "rent": 1475.0, "lease_to": "2026-05-31", "is_mtm": false, "days_to_expiry": 26, "expiry_bucket": "0-30d", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "898", "name": "", "property": "w117", "unit": "6", "rent": 895.0, "lease_to": "2026-05-31", "is_mtm": false, "days_to_expiry": 26, "expiry_bucket": "0-30d", "retention_status": "Avoidant", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "3150", "name": "", "property": "w226", "unit": "4", "rent": 1045.0, "lease_to": "2026-05-31", "is_mtm": false, "days_to_expiry": 26, "expiry_bucket": "0-30d", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "3147", "name": "", "property": "w226", "unit": "5", "rent": 1145.0, "lease_to": "2026-05-31", "is_mtm": false, "days_to_expiry": 26, "expiry_bucket": "0-30d", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "4633", "name": "", "property": "tc68", "unit": "D091", "rent": 1795.0, "lease_to": "2026-06-26", "is_mtm": false, "days_to_expiry": 52, "expiry_bucket": "31-60d", "retention_status": "Do Not Retain", "attrition_type": "Non-Regrettable", "risk_tier": "High"}, {"id": "3189", "name": "", "property": "h731", "unit": "737 B", "rent": 1364.0, "lease_to": "2026-06-27", "is_mtm": false, "days_to_expiry": 53, "expiry_bucket": "31-60d", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "3203", "name": "", "property": "ps25", "unit": "F43", "rent": 1162.0, "lease_to": "2026-06-29", "is_mtm": false, "days_to_expiry": 55, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3211", "name": "", "property": "w117", "unit": "10", "rent": 895.0, "lease_to": "2026-06-29", "is_mtm": false, "days_to_expiry": 55, "expiry_bucket": "31-60d", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "2304", "name": "", "property": "a511", "unit": "302", "rent": 1128.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "1682", "name": "", "property": "a916", "unit": "8", "rent": 1033.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "529", "name": "", "property": "b101", "unit": "8", "rent": 870.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "3229", "name": "", "property": "c302", "unit": "5", "rent": 1525.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "Transfering", "attrition_type": "Regrettable", "risk_tier": "Low"}, {"id": "953", "name": "", "property": "c302", "unit": "7", "rent": 1450.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "955", "name": "", "property": "c302", "unit": "9", "rent": 1450.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3230", "name": "", "property": "c313", "unit": "12", "rent": 1695.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "Do Not Retain", "attrition_type": "Non-Regrettable", "risk_tier": "High"}, {"id": "3196", "name": "", "property": "c313", "unit": "18", "rent": 1220.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "3182", "name": "", "property": "e328", "unit": "4", "rent": 1325.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "3231", "name": "", "property": "j312", "unit": "3104", "rent": 1290.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "769", "name": "", "property": "k104- LeFevre", "unit": "101-1", "rent": 1334.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "1760", "name": "", "property": "k104- LeFevre", "unit": "503-1", "rent": 1267.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "762", "name": "", "property": "k104- LeFevre", "unit": "505-2", "rent": 1267.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3201", "name": "", "property": "k104- LeFevre", "unit": "506-3", "rent": 1087.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "758", "name": "", "property": "k104- LeFevre", "unit": "507-2", "rent": 1267.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3107", "name": "", "property": "k104- LeFevre", "unit": "508-2", "rent": 1087.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "1685", "name": "", "property": "k104- LeFevre", "unit": "509-4", "rent": 1267.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Non-Regrettable", "risk_tier": "Medium"}, {"id": "3104", "name": "", "property": "kn47 K1", "unit": "B102", "rent": 1362.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "2759", "name": "", "property": "kn47 K1", "unit": "B201", "rent": 1362.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "2777", "name": "", "property": "kn47 K1", "unit": "C206", "rent": 1136.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "2797", "name": "", "property": "kn47 K1", "unit": "E202", "rent": 936.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "2811", "name": "", "property": "kn47 K1", "unit": "F206", "rent": 1136.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "Lease Signed", "attrition_type": "Regrettable", "risk_tier": "Low"}, {"id": "2814", "name": "", "property": "kn47 K1", "unit": "G101", "rent": 1362.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "2819", "name": "", "property": "kn47 K1", "unit": "G202", "rent": 1362.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3278", "name": "", "property": "kn47 K1", "unit": "H101", "rent": 1136.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "2824", "name": "", "property": "kn47 K1", "unit": "H103", "rent": 1136.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3733", "name": "", "property": "kn47 K1", "unit": "J101", "rent": 936.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "Do Not Retain", "attrition_type": "Non-Regrettable", "risk_tier": "High"}, {"id": "2838", "name": "", "property": "kn47 K1", "unit": "J103", "rent": 1136.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "2863", "name": "", "property": "kn47 K1", "unit": "L104", "rent": 936.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "2867", "name": "", "property": "kn47 K1", "unit": "L201", "rent": 936.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3169", "name": "", "property": "kn47 K1", "unit": "L208", "rent": 936.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "No Status", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "2879", "name": "", "property": "kn47 K1", "unit": "M108", "rent": 936.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3180", "name": "", "property": "kn47 K1", "unit": "M205", "rent": 936.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "2988", "name": "", "property": "kn47 K2", "unit": "C207", "rent": 936.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3168", "name": "", "property": "kn47 K2", "unit": "D101", "rent": 1136.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "Do Not Retain", "attrition_type": "Non-Regrettable", "risk_tier": "High"}, {"id": "3177", "name": "", "property": "kn47 K2", "unit": "D104", "rent": 1136.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3001", "name": "", "property": "kn47 K2", "unit": "E101", "rent": 1136.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3010", "name": "", "property": "kn47 K2", "unit": "E205", "rent": 1136.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3012", "name": "", "property": "kn47 K2", "unit": "E207", "rent": 1136.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3031", "name": "", "property": "kn47-k3", "unit": "K202", "rent": 1430.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3032", "name": "", "property": "kn47-k3", "unit": "K203", "rent": 1430.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "2003", "name": "", "property": "l912 (Multi-Family)", "unit": "202", "rent": 1695.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "No Status", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "2004", "name": "", "property": "l912 (Multi-Family)", "unit": "203", "rent": 1695.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "Do Not Retain", "attrition_type": "", "risk_tier": "High"}, {"id": "2006", "name": "", "property": "l912 (Multi-Family)", "unit": "302", "rent": 1695.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "Do Not Retain", "attrition_type": "", "risk_tier": "High"}, {"id": "2008", "name": "", "property": "l912 (Multi-Family)", "unit": "304", "rent": 1695.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "Do Not Retain", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "1699", "name": "", "property": "m221", "unit": "21", "rent": 1360.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "997", "name": "", "property": "m405", "unit": "7", "rent": 950.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "232", "name": "", "property": "m608", "unit": "6", "rent": 1181.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "1706", "name": "", "property": "ms43", "unit": "436", "rent": 1172.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "446", "name": "", "property": "ms43", "unit": "440", "rent": 1172.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "Will Renew", "attrition_type": "Non-Regrettable", "risk_tier": "Low"}, {"id": "470", "name": "", "property": "p705", "unit": "05", "rent": 1295.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3217", "name": "", "property": "ps17", "unit": "A3", "rent": 956.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "1289", "name": "", "property": "ps17", "unit": "B1", "rent": 956.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "1678", "name": "", "property": "ps25", "unit": "D30", "rent": 1395.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3167", "name": "", "property": "ps25", "unit": "F44", "rent": 1395.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "1099", "name": "", "property": "ps91", "unit": "6", "rent": 1360.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "1581", "name": "", "property": "rl16", "unit": "A04", "rent": 1443.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "1593", "name": "", "property": "rl16", "unit": "A17", "rent": 1627.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "1647", "name": "", "property": "rl16", "unit": "D01", "rent": 1627.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "Do Not Retain", "attrition_type": "Non-Regrettable", "risk_tier": "High"}, {"id": "2267", "name": "", "property": "rl16", "unit": "D05", "rent": 1443.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "38", "name": "", "property": "s300", "unit": "9", "rent": 966.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "4553", "name": "", "property": "tc68", "unit": "A02", "rent": 1775.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4581", "name": "", "property": "tc68", "unit": "B35", "rent": 1595.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4637", "name": "", "property": "tc68", "unit": "D095", "rent": 1775.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4644", "name": "", "property": "tc68", "unit": "D102", "rent": 1775.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "4646", "name": "", "property": "tc68", "unit": "D104", "rent": 1595.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "No Status", "attrition_type": "", "risk_tier": "Medium"}, {"id": "2348", "name": "", "property": "v202", "unit": "1", "rent": 1475.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "1383", "name": "", "property": "w117", "unit": "3", "rent": 925.0, "lease_to": "2026-06-30", "is_mtm": false, "days_to_expiry": 56, "expiry_bucket": "31-60d", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "3165", "name": "", "property": "hl65", "unit": "6", "rent": 1293.0, "lease_to": "2026-07-05", "is_mtm": false, "days_to_expiry": 61, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3195", "name": "", "property": "ms43", "unit": "448", "rent": 1338.0, "lease_to": "2026-07-10", "is_mtm": false, "days_to_expiry": 66, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3209", "name": "", "property": "ps17", "unit": "A9", "rent": 956.0, "lease_to": "2026-07-13", "is_mtm": false, "days_to_expiry": 69, "expiry_bucket": "61-90d", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "3207", "name": "", "property": "ps17", "unit": "A10", "rent": 956.0, "lease_to": "2026-07-13", "is_mtm": false, "days_to_expiry": 69, "expiry_bucket": "61-90d", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "4641", "name": "", "property": "tc68", "unit": "D099", "rent": 1775.0, "lease_to": "2026-07-13", "is_mtm": false, "days_to_expiry": 69, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3224", "name": "", "property": "rl16", "unit": "A09", "rent": 1627.0, "lease_to": "2026-07-17", "is_mtm": false, "days_to_expiry": 73, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "4630", "name": "", "property": "tc68", "unit": "D088", "rent": 1775.0, "lease_to": "2026-07-17", "is_mtm": false, "days_to_expiry": 73, "expiry_bucket": "61-90d", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "3240", "name": "", "property": "rl16", "unit": "B03", "rent": 1195.0, "lease_to": "2026-07-20", "is_mtm": false, "days_to_expiry": 76, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3249", "name": "", "property": "rl16", "unit": "B11", "rent": 1195.0, "lease_to": "2026-07-24", "is_mtm": false, "days_to_expiry": 80, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "4607", "name": "", "property": "tc68", "unit": "C63", "rent": 1775.0, "lease_to": "2026-07-27", "is_mtm": false, "days_to_expiry": 83, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3286", "name": "", "property": "a916", "unit": "1", "rent": 1033.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3292", "name": "", "property": "b101", "unit": "14", "rent": 922.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "993", "name": "", "property": "b101", "unit": "16", "rent": 870.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "2085", "name": "", "property": "c313", "unit": "3", "rent": 1645.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "Do Not Retain", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "3310", "name": "", "property": "c313", "unit": "19", "rent": 1595.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "Do Not Retain", "attrition_type": "Non-Regrettable", "risk_tier": "High"}, {"id": "2370", "name": "", "property": "c313", "unit": "22", "rent": 1525.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3299", "name": "", "property": "c313", "unit": "26", "rent": 1495.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (in communication)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3283", "name": "", "property": "c313", "unit": "33", "rent": 1495.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "Will Not Renew", "attrition_type": "Non-Regrettable", "risk_tier": "High"}, {"id": "2117", "name": "", "property": "c313", "unit": "37", "rent": 1220.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "1250", "name": "", "property": "h731", "unit": "737 A", "rent": 1290.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "1133", "name": "", "property": "h731", "unit": "737 D", "rent": 1290.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "Do Not Retain", "attrition_type": "Non-Regrettable", "risk_tier": "High"}, {"id": "2365", "name": "", "property": "hl65", "unit": "9", "rent": 1293.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "2416", "name": "", "property": "k104- LeFevre", "unit": "107-8", "rent": 1334.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (in communication)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3245", "name": "", "property": "k104- LeFevre", "unit": "314-9", "rent": 1334.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "Will Renew", "attrition_type": "Regrettable", "risk_tier": "Low"}, {"id": "3268", "name": "", "property": "k104- LeFevre", "unit": "509-1", "rent": 1267.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3275", "name": "", "property": "k104- LeFevre", "unit": "509-2", "rent": 1267.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3301", "name": "", "property": "k104- LeFevre", "unit": "512-4", "rent": 1334.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3215", "name": "", "property": "k104- LeFevre", "unit": "519-103", "rent": 1164.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "2791", "name": "", "property": "kn47 K1", "unit": "E102", "rent": 936.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (in communication)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "2806", "name": "", "property": "kn47 K1", "unit": "F108", "rent": 1136.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "2818", "name": "", "property": "kn47 K1", "unit": "G201", "rent": 1362.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "2820", "name": "", "property": "kn47 K1", "unit": "G203", "rent": 1362.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "2837", "name": "", "property": "kn47 K1", "unit": "J102", "rent": 1136.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3185", "name": "", "property": "kn47 K1", "unit": "J206", "rent": 1136.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "Will Renew", "attrition_type": "Regrettable", "risk_tier": "Low"}, {"id": "2869", "name": "", "property": "kn47 K1", "unit": "L204", "rent": 1136.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3239", "name": "", "property": "kn47 K2", "unit": "A104", "rent": 1136.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "2959", "name": "", "property": "kn47 K2", "unit": "A204", "rent": 1136.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "2970", "name": "", "property": "kn47 K2", "unit": "B204", "rent": 1136.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "2981", "name": "", "property": "kn47 K2", "unit": "C107", "rent": 1136.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "Will Renew", "attrition_type": "Regrettable", "risk_tier": "Low"}, {"id": "2992", "name": "", "property": "kn47 K2", "unit": "D105", "rent": 1136.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3004", "name": "", "property": "kn47 K2", "unit": "E105", "rent": 936.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3005", "name": "", "property": "kn47 K2", "unit": "E107", "rent": 936.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3006", "name": "", "property": "kn47 K2", "unit": "E108", "rent": 936.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3028", "name": "", "property": "kn47-k3", "unit": "K103", "rent": 1430.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "1791", "name": "", "property": "m221", "unit": "33", "rent": 1235.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "1715", "name": "", "property": "m405", "unit": "11", "rent": 942.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3252", "name": "", "property": "m405", "unit": "20", "rent": 950.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3461", "name": "", "property": "o155-Elm", "unit": "I", "rent": 1075.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3470", "name": "", "property": "o155-Elm", "unit": "T", "rent": 995.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "3312", "name": "", "property": "p705", "unit": "04", "rent": 1340.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "Will Renew", "attrition_type": "Regrettable", "risk_tier": "Low"}, {"id": "2163", "name": "", "property": "p705", "unit": "17", "rent": 1295.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "Will Renew", "attrition_type": "Regrettable", "risk_tier": "Low"}, {"id": "3302", "name": "", "property": "p705", "unit": "19", "rent": 1340.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3293", "name": "", "property": "ps17", "unit": "A4", "rent": 956.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "2371", "name": "", "property": "ps17", "unit": "A6", "rent": 956.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3273", "name": "", "property": "ps17", "unit": "B5", "rent": 956.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3309", "name": "", "property": "ps25", "unit": "A3", "rent": 1162.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3279", "name": "", "property": "ps25", "unit": "B10", "rent": 1162.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "2266", "name": "", "property": "ps25", "unit": "B14", "rent": 1162.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "1100", "name": "", "property": "ps91", "unit": "7", "rent": 1129.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "2373", "name": "", "property": "ps91", "unit": "8", "rent": 1129.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (in communication)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "2262", "name": "", "property": "rl16", "unit": "A05", "rent": 1443.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "Will Renew", "attrition_type": "Regrettable", "risk_tier": "Low"}, {"id": "1970", "name": "", "property": "rl16", "unit": "B01", "rent": 1627.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "1780", "name": "", "property": "rl16", "unit": "C23", "rent": 1627.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "1652", "name": "", "property": "rl16", "unit": "D06", "rent": 1443.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (in communication)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "2368", "name": "", "property": "rl16", "unit": "D22", "rent": 1443.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "Will Renew", "attrition_type": "Non-Regrettable", "risk_tier": "Low"}, {"id": "2413", "name": "", "property": "s129", "unit": "3", "rent": 1035.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "Do Not Retain", "attrition_type": "Non-Regrettable", "risk_tier": "High"}, {"id": "2415", "name": "", "property": "s129", "unit": "13", "rent": 1035.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3248", "name": "", "property": "tc34", "unit": "A1", "rent": 1235.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "Will Not Renew", "attrition_type": "Regrettable", "risk_tier": "High"}, {"id": "3256", "name": "", "property": "tc34", "unit": "A3", "rent": 1235.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3144", "name": "", "property": "tc34", "unit": "A206", "rent": 1235.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "Do Not Retain", "attrition_type": "Non-Regrettable", "risk_tier": "High"}, {"id": "4563", "name": "", "property": "tc68", "unit": "A12", "rent": 1775.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "4592", "name": "", "property": "tc68", "unit": "B46", "rent": 1595.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}, {"id": "3243", "name": "", "property": "w226", "unit": "1", "rent": 945.0, "lease_to": "2026-07-31", "is_mtm": false, "days_to_expiry": 87, "expiry_bucket": "61-90d", "retention_status": "In-progress (called)", "attrition_type": "Regrettable", "risk_tier": "Medium"}], "summary": {"total_count": 323, "high_count": 89, "medium_count": 208, "low_count": 26, "total_rent": 409992.0, "high_rent": 111048.0, "ntv_last_30d": 5}, "ntv_by_month": {"2026-05": 5}, "status_counts": {"Will Renew": 21, "In-progress (called)": 115, "Will Not Renew": 48, "Transfering": 3, "No Status": 79, "Do Not Retain": 34, "In-progress (in communication)": 14, "M2M - Do Not Retain": 1, "Lease Signed": 1, "Will Renew w/ Concession": 1, "Avoidant": 6}, "property_exposure": [{"property": "kn47 K1", "total": 43, "high": 18, "medium": 22, "low": 3, "rent": 48134.0}, {"property": "c313", "total": 12, "high": 7, "medium": 4, "low": 1, "rent": 18170.0}, {"property": "ps17", "total": 10, "high": 6, "medium": 4, "low": 0, "rent": 9560.0}, {"property": "rl16", "total": 19, "high": 6, "medium": 10, "low": 3, "rent": 28309.0}, {"property": "rl21", "total": 7, "high": 6, "medium": 0, "low": 1, "rent": 5950.0}, {"property": "ps25", "total": 17, "high": 5, "medium": 11, "low": 1, "rent": 22804.0}, {"property": "l912 (Multi-Family)", "total": 5, "high": 4, "medium": 1, "low": 0, "rent": 8475.0}, {"property": "tc68", "total": 64, "high": 4, "medium": 59, "low": 1, "rent": 108900.0}, {"property": "k104- LeFevre", "total": 18, "high": 3, "medium": 14, "low": 1, "rent": 21390.0}, {"property": "o155-Elm", "total": 9, "high": 3, "medium": 6, "low": 0, "rent": 9770.0}, {"property": "tc34", "total": 6, "high": 3, "medium": 3, "low": 0, "rent": 7420.0}, {"property": "v202", "total": 3, "high": 3, "medium": 0, "low": 0, "rent": 4425.0}, {"property": "w117", "total": 3, "high": 3, "medium": 0, "low": 0, "rent": 2715.0}, {"property": "h731", "total": 3, "high": 2, "medium": 1, "low": 0, "rent": 3944.0}, {"property": "kn47 K2", "total": 22, "high": 2, "medium": 17, "low": 3, "rent": 23592.0}, {"property": "ms43", "total": 7, "high": 2, "medium": 4, "low": 1, "rent": 8224.0}, {"property": "s129", "total": 4, "high": 2, "medium": 1, "low": 1, "rent": 4140.0}, {"property": "w226", "total": 5, "high": 2, "medium": 3, "low": 0, "rent": 5175.0}, {"property": "b101", "total": 5, "high": 1, "medium": 3, "low": 1, "rent": 4402.0}, {"property": "c302", "total": 4, "high": 1, "medium": 2, "low": 1, "rent": 5668.0}, {"property": "e328", "total": 1, "high": 1, "medium": 0, "low": 0, "rent": 1325.0}, {"property": "k308", "total": 1, "high": 1, "medium": 0, "low": 0, "rent": 2095.0}, {"property": "kn47-k3", "total": 4, "high": 1, "medium": 3, "low": 0, "rent": 5720.0}, {"property": "m221", "total": 3, "high": 1, "medium": 2, "low": 0, "rent": 3955.0}, {"property": "o155-Oak", "total": 9, "high": 1, "medium": 6, "low": 2, "rent": 9975.0}, {"property": "s300", "total": 2, "high": 1, "medium": 1, "low": 0, "rent": 1932.0}, {"property": "a210", "total": 1, "high": 0, "medium": 0, "low": 1, "rent": 1035.0}, {"property": "a511", "total": 2, "high": 0, "medium": 1, "low": 1, "rent": 2256.0}, {"property": "a916", "total": 3, "high": 0, "medium": 2, "low": 1, "rent": 3099.0}, {"property": "h604", "total": 1, "high": 0, "medium": 1, "low": 0, "rent": 1695.0}, {"property": "hl65", "total": 2, "high": 0, "medium": 2, "low": 0, "rent": 2586.0}, {"property": "j312", "total": 1, "high": 0, "medium": 1, "low": 0, "rent": 1290.0}, {"property": "l912 (Community Association)", "total": 12, "high": 0, "medium": 12, "low": 0, "rent": 4080.0}, {"property": "m405", "total": 3, "high": 0, "medium": 3, "low": 0, "rent": 2842.0}, {"property": "m608", "total": 2, "high": 0, "medium": 2, "low": 0, "rent": 2268.0}, {"property": "p705", "total": 5, "high": 0, "medium": 3, "low": 2, "rent": 6565.0}, {"property": "ps91", "total": 5, "high": 0, "medium": 4, "low": 1, "rent": 6107.0}], "as_of": "May 5, 2026", "window_days": 90};
 
-const COLORS = {
-  High:   "#f87171",
-  Medium: "#fbbf24",
-  Low:    "#34d399",
-};
-const BUCKET_ORDER = ["MTM", "0-30d", "31-60d", "61-90d"];
-const TIER_ORDER   = ["High", "Medium", "Low"];
+// ── Constants ─────────────────────────────────────────────────────────────────
+const COLORS = { High: "#f87171", Medium: "#fbbf24", Low: "#34d399" };
+const TIER_ORDER = ["High", "Medium", "Low"];
+const PROB = { High: 0.95, Medium: 0.25, Low: 0.05 };
 
-// ── KPI cards ────────────────────────────────────────────────────────────────
-function renderKPIs() {
-  const s = RAW.summary;
-  const fmt = n => "$" + d3.format(",.0f")(n);
-  const cards = [
-    { label: "Total Exposure", value: s.total_count, sub: fmt(s.total_rent) + "/mo", cls: "" },
-    { label: "High Risk", value: s.high_count, sub: fmt(s.high_rent) + "/mo at risk", cls: "danger" },
-    { label: "Low Risk (locked in)", value: s.low_count, sub: "", cls: "ok" },
-    { label: "NTVs — last 30d", value: s.ntv_last_30d, sub: "notices to vacate", cls: s.ntv_last_30d > 5 ? "warn" : "" },
-  ];
-  const row = document.getElementById("kpi-row");
-  cards.forEach(c => {
-    const el = document.createElement("div");
-    el.className = "kpi" + (c.cls ? " " + c.cls : "");
-    el.innerHTML = `<div class="label">${c.label}</div><div class="value">${c.value}</div>${c.sub ? `<div class="sub">${c.sub}</div>` : ""}`;
-    row.appendChild(el);
+function expectedVac(h, m, l) {
+  return PROB.High * h + PROB.Medium * m + PROB.Low * l;
+}
+
+// ── Cohort helpers ────────────────────────────────────────────────────────────
+function leaseCohort(lease) {
+  if (lease.is_mtm || !lease.lease_to) return "MTM";
+  return lease.lease_to.slice(0, 7); // "YYYY-MM"
+}
+
+function formatCohort(ym) {
+  if (ym === "MTM") return "MTM";
+  const [y, m] = ym.split("-");
+  const names = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  return names[parseInt(m, 10) - 1] + " \u2019" + y.slice(2);
+}
+
+function sortedCohorts(leases) {
+  const s = new Set(leases.map(leaseCohort));
+  return [...s].sort((a, b) => {
+    if (a === "MTM") return -1;
+    if (b === "MTM") return 1;
+    return a.localeCompare(b);
   });
 }
 
-// ── Stacked bar: expiry bucket x risk tier ────────────────────────────────────
-function renderBarChart() {
-  const leases = RAW.leases;
+// ── Global filter state ───────────────────────────────────────────────────────
+let selProps = new Set();
+let selRisks = new Set();
+let selCohorts = new Set(); // table-level cohort filter
 
-  // Build counts per bucket/tier
-  const data = BUCKET_ORDER.map(bucket => {
-    const row = { bucket };
-    TIER_ORDER.forEach(t => row[t] = 0);
-    leases.filter(l => l.expiry_bucket === bucket).forEach(l => row[l.risk_tier]++);
-    return row;
-  });
-
-  const margin = { top: 10, right: 20, bottom: 30, left: 36 };
-  const totalW = 700, totalH = 220;
-  const W = totalW - margin.left - margin.right;
-  const H = totalH - margin.top - margin.bottom;
-
-  const svg = d3.select("#bar-chart")
-    .attr("viewBox", `0 0 ${totalW} ${totalH}`)
-    .attr("preserveAspectRatio", "xMidYMid meet")
-    .style("width", "100%").style("height", "auto");
-
-  const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
-
-  const stack = d3.stack().keys(TIER_ORDER)(data);
-  const maxY = d3.max(stack[stack.length - 1], d => d[1]) || 1;
-
-  const x = d3.scaleBand().domain(BUCKET_ORDER).range([0, W]).padding(0.35);
-  const y = d3.scaleLinear().domain([0, maxY]).nice().range([H, 0]);
-
-  // Grid
-  g.append("g").attr("class", "grid")
-    .call(d3.axisLeft(y).ticks(4).tickSize(-W).tickFormat(""));
-
-  // Axes
-  g.append("g").attr("class", "axis").attr("transform", `translate(0,${H})`).call(d3.axisBottom(x).tickSize(0).tickPadding(8));
-  g.append("g").attr("class", "axis").call(d3.axisLeft(y).ticks(4));
-
-  // Bars
-  stack.forEach(series => {
-    const tier = series.key;
-    g.selectAll(`.bar-${tier}`)
-      .data(series)
-      .join("rect")
-        .attr("x", d => x(d.data.bucket))
-        .attr("y", d => y(d[1]))
-        .attr("height", d => Math.max(0, y(d[0]) - y(d[1])))
-        .attr("width", x.bandwidth())
-        .attr("fill", COLORS[tier])
-        .attr("opacity", 0.85)
-        .attr("rx", 2);
-  });
-
-  // Labels on top of each bar
-  data.forEach(d => {
-    const total = TIER_ORDER.reduce((s, t) => s + d[t], 0);
-    if (total === 0) return;
-    g.append("text")
-      .attr("x", x(d.bucket) + x.bandwidth() / 2)
-      .attr("y", y(total) - 5)
-      .attr("text-anchor", "middle")
-      .attr("fill", "#94a3b8")
-      .attr("font-size", 11)
-      .text(total);
-  });
-
-  // Legend
-  const legend = document.getElementById("bar-legend");
-  TIER_ORDER.forEach(t => {
-    const item = document.createElement("div");
-    item.className = "legend-item";
-    item.innerHTML = `<div class="legend-swatch" style="background:${COLORS[t]}"></div>${t} Risk`;
-    legend.appendChild(item);
+function filteredLeases() {
+  return RAW.leases.filter(lease => {
+    if (selProps.size && !selProps.has(lease.property)) return false;
+    if (selRisks.size && !selRisks.has(lease.risk_tier)) return false;
+    return true;
   });
 }
 
-// ── Horizontal bars: pipeline by status ──────────────────────────────────────
-function renderStatusChart() {
-  const counts = RAW.status_counts;
-  const entries = Object.entries(counts)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 12);
-
-  if (!entries.length) return;
-
-  const margin = { top: 6, right: 50, bottom: 10, left: 150 };
-  const rowH = 22;
-  const totalH = margin.top + margin.bottom + entries.length * rowH;
-  const totalW = 440;
-  const W = totalW - margin.left - margin.right;
-
-  const svg = d3.select("#status-chart")
-    .attr("viewBox", `0 0 ${totalW} ${totalH}`)
-    .attr("preserveAspectRatio", "xMidYMid meet")
-    .style("width", "100%").style("height", "auto");
-
-  const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
-
-  const maxX = d3.max(entries, d => d[1]) || 1;
-  const x = d3.scaleLinear().domain([0, maxX]).range([0, W]);
-  const y = d3.scaleBand().domain(entries.map(d => d[0])).range([0, entries.length * rowH]).padding(0.25);
-
-  // Determine color per status via RISK_TIER logic
-  const HIGH_STATUSES = new Set(["Do Not Retain","Will Not Renew","Avoidant","M2M - Do Not Retain"]);
-  const LOW_STATUSES  = new Set(["Will Renew","Will Renew w/ Concession","Lease Signed","Transfering"]);
-
-  entries.forEach(([status, count]) => {
-    const tier = HIGH_STATUSES.has(status) ? "High" : LOW_STATUSES.has(status) ? "Low" : "Medium";
-    const color = COLORS[tier];
-
-    g.append("rect")
-      .attr("x", 0).attr("y", y(status))
-      .attr("width", x(count)).attr("height", y.bandwidth())
-      .attr("fill", color).attr("opacity", 0.8).attr("rx", 2);
-
-    g.append("text")
-      .attr("x", -6).attr("y", y(status) + y.bandwidth() / 2 + 4)
-      .attr("text-anchor", "end").attr("fill", "#94a3b8").attr("font-size", 11)
-      .text(status.length > 20 ? status.slice(0, 19) + "\u2026" : status);
-
-    g.append("text")
-      .attr("x", x(count) + 5).attr("y", y(status) + y.bandwidth() / 2 + 4)
-      .attr("fill", "#64748b").attr("font-size", 11)
-      .text(count);
+function filteredForTable() {
+  return filteredLeases().filter(lease => {
+    if (selCohorts.size && !selCohorts.has(leaseCohort(lease))) return false;
+    return true;
   });
 }
 
-// ── Property table ────────────────────────────────────────────────────────────
-function renderPropTable() {
-  const tbody = document.querySelector("#prop-table tbody");
-  RAW.property_exposure.forEach(p => {
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
-      <td>${p.property}</td>
-      <td>${p.total}</td>
-      <td style="color:#f87171">${p.high || ""}</td>
-      <td style="color:#fbbf24">${p.medium || ""}</td>
-      <td style="color:#34d399">${p.low || ""}</td>`;
-    tbody.appendChild(tr);
-  });
-}
-
-// ── Lease table with filters ──────────────────────────────────────────────────
-let selectedProps   = new Set();
-let selectedRisks   = new Set();
-let selectedBuckets = new Set();
-
-function buildDD(btnId, panelId, items, selectedSet, labelFn, defaultLabel, onchange) {
-  const btn   = document.getElementById(btnId);
+// ── Dropdown builder ──────────────────────────────────────────────────────────
+function buildDD(btnId, panelId, items, selectedSet, defaultLabel, onChange) {
+  const btn = document.getElementById(btnId);
   const panel = document.getElementById(panelId);
+  const checkboxes = [];
 
   items.forEach(item => {
     const lbl = document.createElement("label");
-    const cb  = document.createElement("input");
-    cb.type = "checkbox"; cb.value = item; cb.checked = false;
+    const cb = document.createElement("input");
+    cb.type = "checkbox"; cb.value = item;
+    checkboxes.push(cb);
     cb.addEventListener("change", () => {
       if (cb.checked) selectedSet.add(item); else selectedSet.delete(item);
-      btn.textContent = selectedSet.size === 0 ? defaultLabel + " \u25BE"
-        : (selectedSet.size === 1 ? [...selectedSet][0] : selectedSet.size + " selected") + " \u25BE";
-      onchange();
+      const n = selectedSet.size;
+      btn.textContent = n === 0 ? defaultLabel + " \u25BE"
+        : n === 1 ? [...selectedSet][0] + " \u25BE"
+        : n + " selected \u25BE";
+      btn.classList.toggle("active", n > 0);
+      onChange();
     });
     lbl.appendChild(cb);
-    lbl.appendChild(document.createTextNode(" " + (labelFn ? labelFn(item) : item)));
+    lbl.appendChild(document.createTextNode(" " + item));
     panel.appendChild(lbl);
   });
 
   btn.addEventListener("click", e => { e.stopPropagation(); panel.classList.toggle("open"); });
   document.addEventListener("click", () => panel.classList.remove("open"));
+  return checkboxes;
 }
 
-function renderLeaseTable() {
-  const tbody = document.querySelector("#lease-table tbody");
-  tbody.innerHTML = "";
+// ── Render all ────────────────────────────────────────────────────────────────
+function renderAll() {
+  const leases = filteredLeases();
+  updateFilterSummary(leases);
+  renderKPIs(leases);
+  renderChart(leases);
+  renderPropTable(leases);
+  renderCohortPills(leases);
+  renderLeaseTable();
+}
 
-  const leases = RAW.leases.filter(l => {
-    if (selectedProps.size   && !selectedProps.has(l.property))      return false;
-    if (selectedRisks.size   && !selectedRisks.has(l.risk_tier))     return false;
-    if (selectedBuckets.size && !selectedBuckets.has(l.expiry_bucket)) return false;
-    return true;
+// ── Filter summary ────────────────────────────────────────────────────────────
+function updateFilterSummary(leases) {
+  document.getElementById("filter-summary").textContent =
+    leases.length + " lease" + (leases.length !== 1 ? "s" : "") + " in view";
+}
+
+// ── KPI cards ─────────────────────────────────────────────────────────────────
+function renderKPIs(leases) {
+  const high = leases.filter(l => l.risk_tier === "High");
+  const med  = leases.filter(l => l.risk_tier === "Medium");
+  const low  = leases.filter(l => l.risk_tier === "Low");
+  const expVac = Math.round(expectedVac(high.length, med.length, low.length));
+  const atRiskRent = high.reduce((s, l) => s + l.rent, 0);
+  const fmt = n => "$" + d3.format(",.0f")(n);
+
+  const cards = [
+    { label: "Total Exposure",       value: leases.length,      sub: "leases in pipeline",       cls: "" },
+    { label: "Expected Vacancies",   value: "~" + expVac,       sub: "probability-weighted",      cls: expVac > 20 ? "danger" : "warn" },
+    { label: "High-Risk Units",      value: high.length,        sub: fmt(atRiskRent) + "/mo at risk", cls: "danger" },
+    { label: "NTVs \u2014 Last 30d", value: RAW.summary.ntv_last_30d, sub: "notices to vacate", cls: RAW.summary.ntv_last_30d > 5 ? "warn" : "" },
+  ];
+
+  const row = document.getElementById("kpi-row");
+  row.innerHTML = "";
+  cards.forEach(c => {
+    const el = document.createElement("div");
+    el.className = "kpi" + (c.cls ? " " + c.cls : "");
+    el.innerHTML = `<div class="label">${c.label}</div><div class="value">${c.value}</div><div class="sub">${c.sub}</div>`;
+    row.appendChild(el);
+  });
+}
+
+// ── Main chart ─────────────────────────────────────────────────────────────────
+let chartSvg = null;
+
+function renderChart(leases) {
+  const cohorts = sortedCohorts(leases);
+  if (!cohorts.length) return;
+
+  // Build per-cohort data
+  const data = cohorts.map(c => {
+    const cl = leases.filter(l => leaseCohort(l) === c);
+    const h = cl.filter(l => l.risk_tier === "High").length;
+    const m = cl.filter(l => l.risk_tier === "Medium").length;
+    const lo = cl.filter(l => l.risk_tier === "Low").length;
+    return { cohort: c, label: formatCohort(c), High: h, Medium: m, Low: lo,
+             total: h + m + lo, expected: expectedVac(h, m, lo) };
   });
 
+  const margin = { top: 28, right: 40, bottom: 36, left: 40 };
+  const totalW = 760, totalH = 280;
+  const W = totalW - margin.left - margin.right;
+  const H = totalH - margin.top - margin.bottom;
+
+  // Clear and rebuild
+  const svgEl = document.getElementById("vac-chart");
+  svgEl.innerHTML = "";
+  const svg = d3.select(svgEl)
+    .attr("viewBox", `0 0 ${totalW} ${totalH}`)
+    .attr("preserveAspectRatio", "xMidYMid meet")
+    .style("width", "100%").style("height", "auto");
+
+  const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+
+  const maxY = Math.max(d3.max(data, d => d.total) || 1, 5);
+  const x = d3.scaleBand().domain(data.map(d => d.cohort)).range([0, W]).padding(0.4);
+  const y = d3.scaleLinear().domain([0, maxY]).nice().range([H, 0]);
+
+  // Grid
+  g.append("g").attr("class", "grid")
+    .call(d3.axisLeft(y).ticks(5).tickSize(-W).tickFormat(""));
+
+  // Axes
+  g.append("g").attr("class", "axis").attr("transform", `translate(0,${H})`)
+    .call(d3.axisBottom(x).tickSize(0).tickPadding(10).tickFormat(d => formatCohort(d)));
+  g.append("g").attr("class", "axis")
+    .call(d3.axisLeft(y).ticks(5).tickFormat(d3.format("d")));
+
+  // Stacked bars
+  const stack = d3.stack().keys(TIER_ORDER)(data);
+  stack.forEach(series => {
+    const tier = series.key;
+    g.selectAll(null)
+      .data(series)
+      .join("rect")
+        .attr("x", d => x(d.data.cohort))
+        .attr("y", d => y(d[1]))
+        .attr("height", d => Math.max(0, y(d[0]) - y(d[1])))
+        .attr("width", x.bandwidth())
+        .attr("fill", COLORS[tier])
+        .attr("opacity", 0.82)
+        .attr("rx", 3);
+  });
+
+  // Total labels above each bar
+  data.forEach(d => {
+    if (d.total === 0) return;
+    g.append("text")
+      .attr("x", x(d.cohort) + x.bandwidth() / 2)
+      .attr("y", y(d.total) - 6)
+      .attr("text-anchor", "middle")
+      .attr("fill", "#94a3b8").attr("font-size", 11)
+      .text(d.total);
+  });
+
+  // Expected vacancy line
+  const lineGen = d3.line()
+    .x(d => x(d.cohort) + x.bandwidth() / 2)
+    .y(d => y(d.expected))
+    .curve(d3.curveMonotoneX);
+
+  g.append("path")
+    .datum(data)
+    .attr("fill", "none")
+    .attr("stroke", "#e2e8f0")
+    .attr("stroke-width", 1.5)
+    .attr("stroke-dasharray", "5,3")
+    .attr("opacity", 0.7)
+    .attr("d", lineGen);
+
+  // Expected value dots + labels
+  data.forEach(d => {
+    if (d.total === 0) return;
+    const cx = x(d.cohort) + x.bandwidth() / 2;
+    const cy = y(d.expected);
+    g.append("circle").attr("cx", cx).attr("cy", cy).attr("r", 3)
+      .attr("fill", "#e2e8f0").attr("opacity", 0.8);
+    g.append("text")
+      .attr("x", cx).attr("y", cy - 8)
+      .attr("text-anchor", "middle")
+      .attr("fill", "#e2e8f0").attr("font-size", 10).attr("opacity", 0.7)
+      .text("~" + Math.round(d.expected));
+  });
+
+  // Legend
+  const legend = document.getElementById("vac-legend");
+  legend.innerHTML = "";
+  TIER_ORDER.forEach(t => {
+    const item = document.createElement("div");
+    item.className = "legend-item";
+    item.innerHTML = `<div class="legend-swatch" style="background:${COLORS[t]}"></div>${t} (${Math.round(PROB[t]*100)}% likely to vacate)`;
+    legend.appendChild(item);
+  });
+  const expItem = document.createElement("div");
+  expItem.className = "legend-item";
+  expItem.innerHTML = `<div class="legend-line"></div>Expected vacancies`;
+  legend.appendChild(expItem);
+}
+
+// ── Property table ────────────────────────────────────────────────────────────
+function renderPropTable(leases) {
+  const byProp = {};
+  leases.forEach(lease => {
+    const p = lease.property;
+    if (!byProp[p]) byProp[p] = { property: p, total: 0, High: 0, Medium: 0, Low: 0, rent: 0 };
+    byProp[p].total++;
+    byProp[p][lease.risk_tier]++;
+    byProp[p].rent += lease.rent;
+  });
+
+  const rows = Object.values(byProp)
+    .sort((a, b) => (b.High - a.High) || (b.Medium - a.Medium));
+
+  const fmt = n => n > 0 ? "$" + d3.format(",.0f")(n) : "";
+  const tbody = document.querySelector("#prop-table tbody");
+  tbody.innerHTML = "";
+  rows.forEach(p => {
+    const exp = Math.round(expectedVac(p.High, p.Medium, p.Low));
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${p.property}</td>
+      <td>${p.total}</td>
+      <td style="color:#e2e8f0;font-weight:600">~${exp}</td>
+      <td><span style="color:#f87171">${p.High || ""}</span></td>
+      <td><span style="color:#fbbf24">${p.Medium || ""}</span></td>
+      <td><span style="color:#34d399">${p.Low || ""}</span></td>
+      <td style="color:#f87171">${fmt(p.rent)}</td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+// ── Cohort pills (table-level filter) ────────────────────────────────────────
+function renderCohortPills(leases) {
+  const cohorts = sortedCohorts(leases);
+  const container = document.getElementById("cohort-pills");
+  container.innerHTML = "";
+
+  // "All" pill
+  const allPill = document.createElement("button");
+  allPill.className = "cohort-pill" + (selCohorts.size === 0 ? " sel" : "");
+  allPill.textContent = "All";
+  allPill.addEventListener("click", () => {
+    selCohorts.clear();
+    renderCohortPills(leases);
+    renderLeaseTable();
+  });
+  container.appendChild(allPill);
+
+  cohorts.forEach(c => {
+    const pill = document.createElement("button");
+    pill.className = "cohort-pill" + (selCohorts.has(c) ? " sel" : "");
+    pill.textContent = formatCohort(c);
+    pill.addEventListener("click", () => {
+      if (selCohorts.has(c)) selCohorts.delete(c); else selCohorts.add(c);
+      renderCohortPills(leases);
+      renderLeaseTable();
+    });
+    container.appendChild(pill);
+  });
+}
+
+// ── Lease table ───────────────────────────────────────────────────────────────
+function renderLeaseTable() {
+  const leases = filteredForTable();
   document.getElementById("lease-count").textContent = leases.length + " leases";
 
   const fmt = n => n > 0 ? "$" + d3.format(",.0f")(n) : "";
+  const tbody = document.querySelector("#lease-table tbody");
+  tbody.innerHTML = "";
   leases.forEach(l => {
     const tr = document.createElement("tr");
-    const leaseEnd = l.lease_to ? l.lease_to : "MTM";
     tr.innerHTML = `
       <td>${l.name}</td>
       <td>${l.property}</td>
       <td>${l.unit}</td>
       <td>${fmt(l.rent)}</td>
-      <td>${leaseEnd}</td>
-      <td>${l.expiry_bucket}</td>
-      <td style="color:${l.risk_tier==="High"?"#f87171":l.risk_tier==="Low"?"#34d399":"#fbbf24"}">${l.retention_status}</td>
+      <td>${l.lease_to || "MTM"}</td>
+      <td>${formatCohort(leaseCohort(l))}</td>
+      <td style="color:${COLORS[l.risk_tier]}">${l.retention_status}</td>
       <td><span class="pill pill-${l.risk_tier.toLowerCase()}">${l.risk_tier}</span></td>`;
     tbody.appendChild(tr);
   });
 }
 
-function initFilters() {
-  const props   = [...new Set(RAW.leases.map(l => l.property))].sort();
-  const risks   = TIER_ORDER;
-  const buckets = BUCKET_ORDER;
+// ── Init ──────────────────────────────────────────────────────────────────────
+const allProps = [...new Set(RAW.leases.map(l => l.property))].sort();
+buildDD("gf-prop-btn", "gf-prop-panel", allProps, selProps, "All properties", renderAll);
+buildDD("gf-risk-btn", "gf-risk-panel", TIER_ORDER, selRisks, "All risk tiers", renderAll);
 
-  buildDD("dd-prop-btn",    "dd-prop-panel",    props,   selectedProps,   null, "All properties", renderLeaseTable);
-  buildDD("dd-risk-btn",    "dd-risk-panel",    risks,   selectedRisks,   null, "All tiers",       renderLeaseTable);
-  buildDD("dd-bucket-btn",  "dd-bucket-panel",  buckets, selectedBuckets, null, "All windows",     renderLeaseTable);
-}
-
-// ── Init ─────────────────────────────────────────────────────────────────────
-renderKPIs();
-renderBarChart();
-renderStatusChart();
-renderPropTable();
-initFilters();
-renderLeaseTable();
+renderAll();
 </script>
 </body>
 </html>
